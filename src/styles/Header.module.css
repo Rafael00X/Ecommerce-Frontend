@@ -1,0 +1,30 @@
+.btn-header {
+  min-width: 110px;
+  width: 100%;
+}
+
+.btn-header i {
+  margin: 5px;
+}
+
+.navbar {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+.navbar-brand {
+  cursor: default;
+  margin: auto;
+}
+
+.navbar-brand img {
+  height: 30px;
+  width: 30px;
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+}

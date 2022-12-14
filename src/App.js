@@ -5,10 +5,12 @@ import Category from "./pages/Category";
 import Product from "./pages/Product";
 import Section from "./pages/Section";
 import Error from "./pages/Error";
+import Header from "./components/Header";
 
-function App() {
+export default function App() {
   return (
     <div id="App">
+      <Header />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/category/:categoryId" element={<Category />} />
@@ -19,5 +21,3 @@ function App() {
     </div>
   );
 }
-
-export default App;
