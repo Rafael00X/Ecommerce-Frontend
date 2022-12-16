@@ -22,9 +22,11 @@ export default function SectionCard(props) {
       <hr />
       <div className={styles.slideshow}>
         {categories.map((category) => (
-          <div key={category.categoryId} style={{ width: "230px" }}>
-            <CategoryCard category={category} />
-          </div>
+          <CategoryCard
+            key={category.categoryId}
+            category={category}
+            width="230px"
+          />
         ))}
       </div>
     </div>

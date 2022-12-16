@@ -18,21 +18,16 @@ export default function SectionPage() {
 
   return (
     <>
-      <div
-        className="display-container bg-white"
-        style={{ textAlign: "start" }}
-      >
-        <div className="row">
-          {section.categories.map((category) => (
-            <div
-              key={category.categoryId}
-              className="col col-md-4 col-lg-3"
-              style={{ padding: "10px" }}
-            >
-              <CategoryCard category={category} height="350px" width="350px" />
-            </div>
-          ))}
-        </div>
+      <div className="bg-white row">
+        {section.categories.map((category) => (
+          <div
+            key={category.categoryId}
+            className="col col-md-4 col-lg-3"
+            style={{ padding: "10px" }}
+          >
+            <CategoryCard category={category} width="250px" />
+          </div>
+        ))}
       </div>
     </>
   );

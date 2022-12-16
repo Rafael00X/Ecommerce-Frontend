@@ -7,12 +7,19 @@ import styles from "../styles/CategoryCard.module.css";
 export default function CategoryCard(props) {
   const {
     category: { categoryId, categoryName, imageUrl },
+    width,
   } = props;
 
   return (
-    <div className={styles["category-card"]}>
+    <div className={styles["category-card"]} style={{ width }}>
       <Link to={`/category/${categoryId}`}>
-        <img className="zoom" src={imageUrl || imagePlaceholder} alt="prduct" />
+        <img
+          className="zoom"
+          src={imageUrl || imagePlaceholder}
+          alt="prduct"
+          width="200px"
+          height="250px"
+        />
         <h5 className="ovf-ellipse">{categoryName}</h5>
       </Link>
     </div>

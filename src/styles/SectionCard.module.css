@@ -6,7 +6,7 @@
 .section-card .header {
   align-items: center;
   display: flex;
-  padding: "15px";
+  padding: 15px;
   justify-content: space-between;
 }
 
