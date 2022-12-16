@@ -1,18 +1,18 @@
 .category-card {
-  color: #000;
-  display: inline-block;
+  display: block;
   padding: 15px;
   text-align: center;
+}
+
+.category-card a {
+  color: #000;
+  margin: auto;
   text-decoration: none;
 }
 
 .category-card h5 {
   display: block;
-  overflow: hidden;
   padding: 0 10px;
-  text-decoration: none;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }
 
 .category-card img {

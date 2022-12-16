@@ -9,8 +9,10 @@ export default function SectionCard(props) {
     section: { sectionId, sectionName, categories },
   } = props;
 
+  if (!categories) return <>Loading...</>;
+
   return (
-    <div className={styles["section-card"]}>
+    <div className={styles["section-card"] + " bg-white"}>
       <div className={styles.header}>
         <h1>{sectionName}</h1>
         <Link to={"/section/" + sectionId} className="btn btn-primary">
@@ -19,15 +21,11 @@ export default function SectionCard(props) {
       </div>
       <hr />
       <div className={styles.slideshow}>
-        {categories &&
-          categories.map((category) => (
-            <CategoryCard
-              key={category.categoryId}
-              data={category}
-              height="350px"
-              width="300px"
-            />
-          ))}
+        {categories.map((category) => (
+          <div key={category.categoryId} style={{ width: "230px" }}>
+            <CategoryCard category={category} />
+          </div>
+        ))}
       </div>
     </div>
   );

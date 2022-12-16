@@ -1,6 +1,5 @@
 .section-card {
-  background-color: white;
-  margin: 15px;
+  margin: 15px 0;
   padding: 15px;
 }
 
@@ -12,9 +11,8 @@
 }
 
 .section-card .slideshow {
+  display: flex;
   overflow-y: hidden;
-  text-align: left;
-  white-space: nowrap;
 }
 
 .section-card ::-webkit-scrollbar {

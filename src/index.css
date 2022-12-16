@@ -20,11 +20,19 @@ code {
 }
 
 #App {
-  background-color: #ddd;
+  background-color: #eee;
+  min-height: 100vh;
+  padding-bottom: 10px;
 }
 
 #outer-container {
   margin: auto;
   max-width: 1500px;
   padding: 0 20px;
+}
+
+.ovf-ellipse {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }

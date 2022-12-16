@@ -18,10 +18,9 @@ export default function HomePage() {
 
   return (
     <div>
-      {data &&
-        data.map((section) => (
-          <SectionCard key={section.sectionId} section={section} />
-        ))}
+      {data.map((section) => (
+        <SectionCard key={section.sectionId} section={section} />
+      ))}
     </div>
   );
 }
