@@ -1,0 +1,26 @@
+.category-card {
+  color: #000;
+  display: inline-block;
+  padding: 15px;
+  text-align: center;
+  text-decoration: none;
+}
+
+.category-card h5 {
+  display: block;
+  overflow: hidden;
+  padding: 0 10px;
+  text-decoration: none;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.category-card img {
+  background-color: white;
+  object-fit: contain;
+  display: block;
+  margin: 20px auto;
+  padding: 20px 0;
+  height: 250px;
+  width: 200px;
+}

@@ -11,13 +11,15 @@ export default function App() {
   return (
     <div id="App">
       <Header />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/category/:categoryId" element={<Category />} />
-        <Route path="/product/:productId" element={<Product />} />
-        <Route path="/section/:sectionId" element={<Section />} />
-        <Route path="/*" element={<Error />} />
-      </Routes>
+      <div id="outer-container">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/category/:categoryId" element={<Category />} />
+          <Route path="/product/:productId" element={<Product />} />
+          <Route path="/section/:sectionId" element={<Section />} />
+          <Route path="/*" element={<Error />} />
+        </Routes>
+      </div>
     </div>
   );
 }

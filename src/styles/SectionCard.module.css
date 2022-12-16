@@ -1,0 +1,33 @@
+.section-card {
+  background-color: white;
+  margin: 15px;
+  padding: 15px;
+}
+
+.section-card .header {
+  align-items: center;
+  display: flex;
+  padding: "15px";
+  justify-content: space-between;
+}
+
+.section-card .slideshow {
+  overflow-y: hidden;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.section-card ::-webkit-scrollbar {
+  max-height: 8px;
+}
+
+/* Track */
+.section-card ::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Handle */
+.section-card ::-webkit-scrollbar-thumb {
+  background: #aaa;
+  border-radius: 10px;
+}

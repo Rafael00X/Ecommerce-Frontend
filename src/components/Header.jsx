@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 import Logo from "../assets/img/logo.png";
 import { ReactComponent as CartIcon } from "../assets/svg/cart-shopping-solid.svg";
 import { ReactComponent as ProfileIcon } from "../assets/svg/user-solid.svg";
@@ -47,7 +49,7 @@ function Brand() {
 
 function Cart() {
   return (
-    <a className={`btn btn-dark bold ${styles["btn-header"]}`} href="/cart">
+    <Link className={`btn btn-dark bold ${styles["btn-header"]}`} to="/cart">
       <CartIcon
         style={{
           width: "20px",
@@ -57,24 +59,24 @@ function Cart() {
         }}
       />
       Cart
-    </a>
+    </Link>
   );
 }
 
 function Profile() {
   return (
-    <div class="dropdown">
+    <div className="dropdown">
       <button
-        class={"btn btn-dark bold dropdown-toggle " + styles["btn-header"]}
+        className={"btn btn-dark bold dropdown-toggle " + styles["btn-header"]}
         type="button"
         data-bs-toggle="dropdown"
         aria-expanded="false"
       >
         <ProfileIcon style={{ width: "18px", height: "18px", fill: "white" }} />
       </button>
-      <ul class="dropdown-menu dropdown-menu-end">
+      <ul className="dropdown-menu dropdown-menu-end">
         <li>
-          <button class="dropdown-item">Login</button>
+          <button className="dropdown-item">Login</button>
         </li>
       </ul>
     </div>

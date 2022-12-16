@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 
 export default function Product() {
-  const { productId } = useParams();
+  const productId = Number(useParams().productId);
 
   return (
     <div>
