@@ -1,0 +1,59 @@
+.preview {
+  margin-bottom: 50px;
+}
+
+.preview img {
+  display: block;
+  margin: auto;
+  height: 330px;
+  width: 300px;
+  object-fit: contain;
+  padding: 20px;
+  zoom: 1.5;
+}
+
+.price span {
+  display: inline-block;
+}
+
+.price .main {
+  color: black;
+  display: block;
+  font-size: 1.8rem;
+  font-weight: 500;
+  margin-right: 10px;
+}
+
+.price .original {
+  color: #888;
+  margin-right: 10px;
+  text-decoration: line-through;
+}
+
+.price .discount {
+  color: #9b4eee;
+  font-size: 0.9rem;
+}
+
+.rating {
+  margin-bottom: 5px;
+}
+
+.rating .score {
+  background-color: #9b4eee;
+  border-radius: 5px;
+  color: white;
+  display: inline-block;
+  padding: 0 8px;
+}
+
+.rating .star {
+  display: inline-block;
+  fill: white;
+  margin: auto;
+  padding-bottom: 3px;
+}
+
+.rating .reviews {
+  color: #888;
+}
