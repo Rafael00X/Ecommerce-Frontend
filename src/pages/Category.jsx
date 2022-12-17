@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
+import ProductCard from "../components/ProductCard";
 import { getCategory } from "../utils/query";
 
 export default function Category() {
@@ -17,16 +18,8 @@ export default function Category() {
 
   return (
     <div>
-      <h1>Category Page {categoryId}</h1>
       {category.products.map((product) => {
-        return (
-          <div>
-            <p>{product.name}</p>
-            <img src={product.imageUrl} />
-            <p>{product.price}</p>
-            <p>{product.discount}</p>
-          </div>
-        );
+        return <ProductCard key={product.productId} product={product} />;
       })}
     </div>
   );
