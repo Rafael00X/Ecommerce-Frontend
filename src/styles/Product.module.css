@@ -1,15 +1,13 @@
 .preview {
+  border: 1px var(--border-color-dark) solid;
   margin-bottom: 50px;
 }
 
 .preview img {
   display: block;
   margin: auto;
-  height: 330px;
-  width: 300px;
   object-fit: contain;
   padding: 20px;
-  zoom: 1.5;
 }
 
 .price span {
@@ -25,13 +23,13 @@
 }
 
 .price .original {
-  color: #888;
+  color: var(--grey-text-color);
   margin-right: 10px;
   text-decoration: line-through;
 }
 
 .price .discount {
-  color: #9b4eee;
+  color: var(--highlight-color);
   font-size: 0.9rem;
 }
 
@@ -40,7 +38,7 @@
 }
 
 .rating .score {
-  background-color: #9b4eee;
+  background-color: var(--highlight-color);
   border-radius: 5px;
   color: white;
   display: inline-block;
@@ -55,5 +53,5 @@
 }
 
 .rating .reviews {
-  color: #888;
+  color: var(--grey-text-color);
 }

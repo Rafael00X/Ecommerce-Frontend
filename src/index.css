@@ -1,6 +1,7 @@
 :root {
   --background-color: #eee;
-  --border-color: #999;
+  --border-color-dark: #999;
+  --border-color-light: #ddd;
   --grey-text-color: #888;
   --highlight-color: #9b4eee;
 }

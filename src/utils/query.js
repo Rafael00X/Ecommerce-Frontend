@@ -30,5 +30,11 @@ export const getCategory = async (categoryId) => {
 };
 
 export const getProduct = async (productId) => {
-  return productData.find((product) => product.productId === productId);
+  const product = productData.find(
+    (product) => product.productId === productId
+  );
+  product.totalRating = 12;
+  product.reviewCount = 3;
+  // product.reviews = [];
+  return product;
 };

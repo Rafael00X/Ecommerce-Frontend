@@ -20,15 +20,6 @@ export default function ProductPage() {
     return <h3>Loading...</h3>;
   }
 
-  const discount = product?.discount;
-  const imageUrl = product?.imageUrl;
-  const price = product?.price;
-  const productName = product?.productName;
-
-  const reviews = product?.reviews;
-  const reviewCount = product?.reviewCount || 3;
-  const totalRating = product?.totalRating || 12;
-
   return (
     <>
       <div
@@ -37,20 +28,10 @@ export default function ProductPage() {
       >
         <div className="row">
           <div className="col col-12 col-lg-6">
-            <Preview values={{ imageUrl }} />
+            <Preview imageUrl={product.imageUrl} />
           </div>
           <div className="col col-12 col-lg-6">
-            <Details
-              values={{
-                discount,
-                imageUrl,
-                price,
-                productId,
-                productName,
-                reviewCount,
-                totalRating,
-              }}
-            />
+            <Details product={product} />
           </div>
         </div>
       </div>
@@ -59,18 +40,23 @@ export default function ProductPage() {
 }
 
 function Preview(props) {
-  const { imageUrl } = props.values;
+  const { imageUrl } = props;
 
   return (
-    <div className={`border ${styles.preview}`}>
-      <img src={imageUrl || imagePlaceholder} alt="Product" />
+    <div className={styles.preview}>
+      <img
+        src={imageUrl || imagePlaceholder}
+        alt="Product"
+        height="500px"
+        width="80%"
+      />
     </div>
   );
 }
 
 function Details(props) {
   const { productName, discount, price, reviewCount, totalRating } =
-    props.values;
+    props.product;
 
   const discountedPrice = Math.floor((price * (100 - discount)) / 100);
   const rating = reviewCount === 0 ? 0.0 : totalRating / reviewCount;
