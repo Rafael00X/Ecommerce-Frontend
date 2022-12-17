@@ -17,48 +17,47 @@ export default function ProductCard(props) {
   const rating = reviewCount === 0 ? 0.0 : totalRating / reviewCount;
 
   return (
-    <div className={styles["product-card"] + " bg-white"}>
-      <Link to={`/product/${productId}`}>
-        <div className={styles.container}>
+    <Link to={`/product/${productId}`}>
+      <div className={styles["product-card"] + " bg-white"}>
+        <div>
           <img
             src={imageUrl || imagePlaceholder}
             alt="Product"
             width="200px"
             height="250px"
-            style={{ display: "inline-block" }}
           />
-          <div className={styles.details}>
-            <h5 className="ovf-ellipse">{productName}</h5>
-            <div className={styles.rating}>
-              <span className={styles.score}>
-                {rating.toFixed(1)} <StarIcon className={styles.star} />
-              </span>
-              <span className={styles.reviews}>
-                {" "}
-                {reviewCount.toLocaleString()} Reviews
+        </div>
+        <div className={styles.details}>
+          <h5 className="ovf-ellipse">{productName}</h5>
+          <div className={styles.rating}>
+            <span className={styles.score}>
+              {rating.toFixed(1)} <StarIcon className={styles.star} />
+            </span>
+            <span className={styles.reviews}>
+              {" "}
+              {reviewCount.toLocaleString()} Reviews
+            </span>
+          </div>
+          {discount === 0 ? (
+            <div className={styles.price}>
+              <span className={styles.main}>
+                &#8377;{price.toLocaleString()}
               </span>
             </div>
-            {discount === 0 ? (
-              <div className={styles.price}>
-                <span className={styles.main}>
-                  &#8377;{price.toLocaleString()}
-                </span>
-              </div>
-            ) : (
-              <div className={styles.price}>
-                <span className={styles.main}>
-                  &#8377;{discountedPrice.toLocaleString()}
-                </span>
-                <span className={styles.original}>
-                  {" "}
-                  &#8377;{price.toLocaleString()}
-                </span>
-                <span className={styles.discount}>{discount}% off</span>
-              </div>
-            )}
-          </div>
+          ) : (
+            <div className={styles.price}>
+              <span className={styles.main}>
+                &#8377;{discountedPrice.toLocaleString()}
+              </span>
+              <span className={styles.original}>
+                {" "}
+                &#8377;{price.toLocaleString()}
+              </span>
+              <span className={styles.discount}>{discount}% off</span>
+            </div>
+          )}
         </div>
-      </Link>
-    </div>
+      </div>
+    </Link>
   );
 }

@@ -15,7 +15,6 @@
 }
 
 .category-card img {
-  object-fit: contain;
   margin: 20px auto;
   padding: 20px 0;
 }

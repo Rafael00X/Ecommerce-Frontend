@@ -1,15 +1,8 @@
-.container {
-  display: flex;
-  justify-content: left;
-}
-
 .product-card {
   border-bottom: solid var(--background-color) 1px;
+  display: flex;
+  justify-content: left;
   padding: 30px 15px;
-}
-
-.product-card img {
-  object-fit: contain;
 }
 
 .product-card .details {
