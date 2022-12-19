@@ -56,10 +56,11 @@ export const addProductToCart = async (productId, quantity) => {
 
 export const getProductFromCart = async (productId) => {
   const cart = JSON.parse(localStorage.getItem("cart"));
+  if (!cart) return false;
   return cart.products.find((product) => product.productId === productId);
 };
 
 export const getCart = async () => {
-  const cart = localStorage.getItem("cart");
+  const cart = JSON.parse(localStorage.getItem("cart"));
   return cart;
 };
