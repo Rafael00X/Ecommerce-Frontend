@@ -1,0 +1,113 @@
+.box-counter {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+  width: 200px;
+}
+
+.btn-counter {
+  background-color: transparent;
+  border: solid 1px #aaa;
+  display: block;
+  margin: auto;
+  height: 40px;
+  width: 40px;
+}
+
+.btn-delete {
+  border-radius: 0 20px 20px 0 !important;
+  border-width: 1px 1px 1px 0 !important;
+}
+
+.btn-reset {
+  border-radius: 20px 0 0 20px !important;
+  border-width: 1px 0 1px 1px !important;
+}
+
+.btn-wrapper {
+  display: block;
+  height: 40px;
+  width: 200px;
+}
+
+.btn-wrapper button {
+  border-color: black !important;
+  border-style: solid !important;
+  display: inline-block;
+  width: 100px;
+}
+
+.payment {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  padding: 20px;
+}
+
+.payment h3 {
+  display: inline-block;
+}
+
+.payment button {
+  display: inline-block;
+}
+
+.card {
+  border-bottom: solid var(--background-color) 1px;
+  color: #000;
+  display: flex;
+  justify-content: start;
+  padding: 30px 15px;
+  text-align: left;
+  text-decoration: none;
+}
+
+.details {
+  display: inline-block;
+  font-weight: 400;
+  margin-right: auto;
+  padding: 0 10px;
+  overflow: hidden;
+}
+
+.card h5 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.card img {
+  background-color: white;
+  margin: 0 40px 0 auto;
+  object-fit: contain;
+}
+
+.price span {
+  display: inline-block;
+}
+
+.price .main {
+  color: black;
+  display: block;
+  font-size: 1.8rem;
+  font-weight: 500;
+  margin-right: 10px;
+}
+
+.price .original {
+  color: var(--grey-text-color);
+  margin-right: 10px;
+  text-decoration: line-through;
+}
+
+.price .discount {
+  color: var(--highlight-color);
+  font-size: 0.9rem;
+}
+
+.text-counter {
+  display: block;
+  margin: 20px 0;
+  text-align: center;
+}

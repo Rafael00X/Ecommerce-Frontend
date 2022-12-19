@@ -62,5 +62,12 @@ export const getProductFromCart = async (productId) => {
 
 export const getCart = async () => {
   const cart = JSON.parse(localStorage.getItem("cart"));
-  return cart;
+  if (!cart) return [];
+  const products = [];
+  for (let i = 0; i < cart.products.length; i++) {
+    const product = await getProduct(cart.products[i].productId);
+    product.quantity = cart.products[i].quantity;
+    products.push(product);
+  }
+  return products;
 };
