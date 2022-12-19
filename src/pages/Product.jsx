@@ -1,23 +1,32 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 
 import { ReactComponent as CartIcon } from "../assets/svg/cart-shopping-solid.svg";
 import { ReactComponent as StarIcon } from "../assets/svg/star.svg";
-import { getProduct } from "../utils/query.js";
+import {
+  getProduct,
+  addProductToCart,
+  getProductFromCart,
+} from "../utils/query.js";
 import imagePlaceholder from "../assets/img/image-placeholder.jpg";
 import styles from "../styles/Product.module.css";
 
 export default function ProductPage() {
   const [product, setProduct] = useState();
+  const [isAddedToCart, setIsAddedToCart] = useState(false);
   const productId = Number(useParams().productId);
-
-  const handleAddToCart = () => {
-    alert("Added to cart");
-  };
 
   useEffect(() => {
     getProduct(productId)
       .then((product) => setProduct(product))
+      .catch((error) => console.log(error));
+  }, [productId]);
+
+  useEffect(() => {
+    getProductFromCart(productId)
+      .then((product) => {
+        if (product) setIsAddedToCart(true);
+      })
       .catch((error) => console.log(error));
   }, [productId]);
 
@@ -41,20 +50,15 @@ export default function ProductPage() {
                 width="80%"
               />
             </div>
-            <button
-              className={styles["add-to-cart"] + " btn btn-dark"}
-              onClick={handleAddToCart}
-            >
-              <CartIcon
-                style={{
-                  fill: "white",
-                  height: "20px",
-                  width: "20px",
-                  marginRight: "15px",
-                }}
-              />
-              ADD TO CART
-            </button>
+            {isAddedToCart ? (
+              <Link to="/cart">
+                <button className={"btn btn-dark " + styles["btn-cart"]}>
+                  GO TO CART
+                </button>
+              </Link>
+            ) : (
+              <AddToCart productId={product.productId} />
+            )}
           </div>
           <div className="col col-12 col-lg-6">
             <Details product={product} />
@@ -62,6 +66,31 @@ export default function ProductPage() {
         </div>
       </div>
     </>
+  );
+}
+
+function AddToCart(props) {
+  const { productId } = props;
+  const handleAddToCart = () => {
+    addProductToCart(productId, 1);
+    alert("Added to cart");
+  };
+
+  return (
+    <button
+      className={styles["btn-cart"] + " btn btn-dark"}
+      onClick={handleAddToCart}
+    >
+      <CartIcon
+        style={{
+          fill: "white",
+          height: "20px",
+          width: "20px",
+          marginRight: "15px",
+        }}
+      />
+      ADD TO CART
+    </button>
   );
 }
 

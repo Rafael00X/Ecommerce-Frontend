@@ -40,3 +40,26 @@ export const getProduct = async (productId) => {
   // product.reviews = [];
   return product;
 };
+
+export const addProductToCart = async (productId, quantity) => {
+  let cart = JSON.parse(localStorage.getItem("cart"));
+  if (!cart)
+    cart = {
+      products: [],
+    };
+  if (cart.products.find((product) => product.productId === productId))
+    return false;
+  cart.products.push({ productId, quantity });
+  localStorage.setItem("cart", JSON.stringify(cart));
+  return true;
+};
+
+export const getProductFromCart = async (productId) => {
+  const cart = JSON.parse(localStorage.getItem("cart"));
+  return cart.products.find((product) => product.productId === productId);
+};
+
+export const getCart = async () => {
+  const cart = localStorage.getItem("cart");
+  return cart;
+};
