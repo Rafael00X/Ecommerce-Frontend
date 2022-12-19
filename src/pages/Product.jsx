@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
+import { ReactComponent as CartIcon } from "../assets/svg/cart-shopping-solid.svg";
 import { ReactComponent as StarIcon } from "../assets/svg/star.svg";
 import { getProduct } from "../utils/query.js";
 import imagePlaceholder from "../assets/img/image-placeholder.jpg";
@@ -9,6 +10,10 @@ import styles from "../styles/Product.module.css";
 export default function ProductPage() {
   const [product, setProduct] = useState();
   const productId = Number(useParams().productId);
+
+  const handleAddToCart = () => {
+    alert("Added to cart");
+  };
 
   useEffect(() => {
     getProduct(productId)
@@ -28,7 +33,28 @@ export default function ProductPage() {
       >
         <div className="row">
           <div className="col col-12 col-lg-6">
-            <Preview imageUrl={product.imageUrl} />
+            <div className={styles.preview}>
+              <img
+                src={product.imageUrl || imagePlaceholder}
+                alt="Product"
+                height="500px"
+                width="80%"
+              />
+            </div>
+            <button
+              className={styles["add-to-cart"] + " btn btn-dark"}
+              onClick={handleAddToCart}
+            >
+              <CartIcon
+                style={{
+                  fill: "white",
+                  height: "20px",
+                  width: "20px",
+                  marginRight: "15px",
+                }}
+              />
+              ADD TO CART
+            </button>
           </div>
           <div className="col col-12 col-lg-6">
             <Details product={product} />
@@ -39,24 +65,15 @@ export default function ProductPage() {
   );
 }
 
-function Preview(props) {
-  const { imageUrl } = props;
-
-  return (
-    <div className={styles.preview}>
-      <img
-        src={imageUrl || imagePlaceholder}
-        alt="Product"
-        height="500px"
-        width="80%"
-      />
-    </div>
-  );
-}
-
 function Details(props) {
-  const { productName, discount, price, reviewCount, totalRating } =
-    props.product;
+  const {
+    productName,
+    discount,
+    price,
+    reviewCount,
+    totalRating,
+    description,
+  } = props.product;
 
   const discountedPrice = Math.floor((price * (100 - discount)) / 100);
   const rating = reviewCount === 0 ? 0.0 : totalRating / reviewCount;
@@ -91,6 +108,10 @@ function Details(props) {
           <span className={styles.discount}>{discount}% off</span>
         </div>
       )}
+      <div>
+        <h3>Description</h3>
+        <span>{description}</span>
+      </div>
     </div>
   );
 }

@@ -1,6 +1,11 @@
+.add-to-cart {
+  height: 60px;
+  margin: 50px 0;
+  width: 100%;
+}
+
 .preview {
   border: 1px var(--border-color-dark) solid;
-  margin-bottom: 50px;
 }
 
 .preview img {
@@ -8,6 +13,10 @@
   margin: auto;
   object-fit: contain;
   padding: 20px;
+}
+
+.price {
+  margin-bottom: 40px;
 }
 
 .price span {
