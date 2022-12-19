@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   margin-bottom: 30px;
-  width: 200px;
+  width: 150px;
 }
 
 .btn-counter {
@@ -14,43 +14,10 @@
   width: 40px;
 }
 
-.btn-delete {
-  border-radius: 0 20px 20px 0 !important;
-  border-width: 1px 1px 1px 0 !important;
-}
-
-.btn-reset {
-  border-radius: 20px 0 0 20px !important;
-  border-width: 1px 0 1px 1px !important;
-}
-
-.btn-wrapper {
+.btn-remove {
   display: block;
-  height: 40px;
-  width: 200px;
-}
-
-.btn-wrapper button {
-  border-color: black !important;
-  border-style: solid !important;
-  display: inline-block;
-  width: 100px;
-}
-
-.payment {
-  align-items: center;
-  display: flex;
-  justify-content: space-between;
-  margin-top: 20px;
-  padding: 20px;
-}
-
-.payment h3 {
-  display: inline-block;
-}
-
-.payment button {
-  display: inline-block;
+  margin: auto;
+  width: 120px;
 }
 
 .card {
@@ -63,18 +30,12 @@
   text-decoration: none;
 }
 
-.details {
+.card .details {
   display: inline-block;
   font-weight: 400;
   margin-right: auto;
   padding: 0 10px;
   overflow: hidden;
-}
-
-.card h5 {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }
 
 .card img {

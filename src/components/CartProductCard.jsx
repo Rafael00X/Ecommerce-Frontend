@@ -6,8 +6,7 @@ import styles from "../styles/CartProductCard.module.css";
 export default function CartProductCard(props) {
   const {
     product,
-    product: { productName, productId, price, imageUrl, quantity, discount },
-    index,
+    product: { productName, price, imageUrl, quantity, discount },
   } = props.values;
   const { deleteProduct, updateProduct } = props.methods;
 
@@ -25,7 +24,7 @@ export default function CartProductCard(props) {
         />
       </div>
       <div className={styles.details}>
-        <h5>{productName}</h5>
+        <h5 className="ovf-ellipse">{productName}</h5>
         {discount === 0 ? (
           <div className={styles.price}>
             <span className={styles.main}>
@@ -68,10 +67,6 @@ function Controls(props) {
       setCount((prev) => prev - 1);
     }
   };
-  const reset = () => {
-    updateProduct({ ...product, quantity: 1 });
-    setCount(1);
-  };
   const remove = () => {
     deleteProduct(product);
   };
@@ -87,20 +82,12 @@ function Controls(props) {
           +
         </button>
       </div>
-      <div className={styles["btn-wrapper"]}>
-        <button
-          className={styles["btn-reset"] + " btn btn-light"}
-          onClick={reset}
-        >
-          RESET
-        </button>
-        <button
-          className={styles["btn-delete"] + " btn btn-dark"}
-          onClick={remove}
-        >
-          REMOVE
-        </button>
-      </div>
+      <button
+        onClick={remove}
+        className={styles["btn-remove"] + " btn btn-dark"}
+      >
+        REMOVE
+      </button>
     </>
   );
 }
