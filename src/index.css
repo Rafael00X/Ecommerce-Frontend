@@ -39,7 +39,6 @@ img {
 #App {
   background-color: var(--background-color);
   min-height: 100vh;
-  overflow-x: hidden;
   padding-bottom: 10px;
 }
 

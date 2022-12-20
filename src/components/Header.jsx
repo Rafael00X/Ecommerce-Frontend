@@ -42,10 +42,12 @@ export default function Header() {
 
 function Brand() {
   return (
-    <p className={`navbar-brand bold ${styles["navbar-brand"]}`}>
-      <img src={Logo} alt="" />
-      &nbsp; Ecommerce
-    </p>
+    <Link to="/">
+      <p className={`navbar-brand bold ${styles["navbar-brand"]}`}>
+        <img src={Logo} alt="" />
+        &nbsp; Ecommerce
+      </p>
+    </Link>
   );
 }
 

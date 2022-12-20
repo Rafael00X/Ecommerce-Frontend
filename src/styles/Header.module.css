@@ -15,7 +15,7 @@
 }
 
 .navbar-brand {
-  cursor: default;
+  cursor: pointer;
   margin: auto;
 }
 

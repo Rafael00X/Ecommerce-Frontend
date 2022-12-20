@@ -11,23 +11,25 @@ export default function LoginModal(props) {
           <h3 className="card-title">Login</h3>
           <hr />
           <form onSubmit={onLogin}>
-            <div class="form-group mb-3">
+            <div className="form-group mb-3">
               <label>Email</label>
               <input
                 type="email"
-                class="form-control"
+                className="form-control"
                 id="exampleInputEmail1"
                 aria-describedby="emailHelp"
                 placeholder="Enter email"
+                required
               />
             </div>
-            <div class="form-group mb-3">
+            <div className="form-group mb-3">
               <label>Password</label>
               <input
                 type="password"
-                class="form-control"
+                className="form-control"
                 id="exampleInputPassword1"
                 placeholder="Enter password"
+                required
               />
             </div>
             <div className="d-flex justify-content-end mb-5">

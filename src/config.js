@@ -1,4 +1,4 @@
-// URL
+const PRODUCT_API_URL = "http://localhost:1111";
+const USER_API_URL = "http://localhost:2222";
 
-const CUSTOMER_API_URL = "";
-const RETAILER_API_URL = "";
+export { PRODUCT_API_URL, USER_API_URL };
