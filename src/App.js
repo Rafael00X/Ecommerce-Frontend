@@ -7,6 +7,7 @@ import Section from "./pages/Section";
 import Error from "./pages/Error";
 import Header from "./components/header/Header";
 import Cart from "./pages/Cart";
+import Orders from "./pages/Orders";
 
 export default function App() {
   return (
@@ -19,6 +20,7 @@ export default function App() {
           <Route path="/product/:productId" element={<Product />} />
           <Route path="/section/:sectionId" element={<Section />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/orders" element={<Orders />} />
           <Route path="/*" element={<Error />} />
         </Routes>
       </div>

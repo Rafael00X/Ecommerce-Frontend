@@ -75,3 +75,28 @@ export const getCart = async () => {
 export const loginUser = async (email, password) => {
   return { email, password };
 };
+
+export const placeOrder = () => {
+  // TODO
+  const cart = JSON.parse(localStorage.getItem("cart"));
+  if (!cart) return false;
+  let orders = JSON.parse(localStorage.getItem("orders"));
+  if (!orders) orders = [];
+  cart.products.forEach((product) => {
+    product.date = new Date().toString();
+    orders.push(product);
+  });
+  localStorage.setItem("orders", JSON.stringify(orders));
+  return true;
+};
+
+export const getOrders = () => {
+  const orders = JSON.parse(localStorage.getItem("orders"));
+  if (!orders) return [];
+  return orders.map((order) => {
+    const product = productData.find(
+      (product) => product.productId === order.productId
+    );
+    return { ...order, ...product };
+  });
+};

@@ -17,7 +17,7 @@ export default function Profile() {
   const LoggedInMenu = (
     <>
       <li>
-        <Link to="/my-orders">
+        <Link to="/orders">
           <button className="dropdown-item">My Orders</button>
         </Link>
       </li>

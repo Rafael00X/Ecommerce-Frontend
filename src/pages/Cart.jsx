@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { getCart } from "../utils/query";
+import { getCart, placeOrder } from "../utils/query";
 import CartProductCard from "../components/cards/CartProductCard";
 import styles from "./Cart.module.css";
 
@@ -65,7 +65,7 @@ export default function CartPage() {
 function Payment(props) {
   const { total } = props;
   const handlePay = () => {
-    alert("Feature not implemented yet!");
+    placeOrder();
   };
   return (
     <div className={styles.payment}>
