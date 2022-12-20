@@ -1,11 +1,14 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
 import LoginModal from "./LoginModal";
+import WarningModal from "./WarningModal";
 import Logo from "../assets/img/logo.png";
+import styles from "../styles/Header.module.css";
+import { actions } from "../store";
 import { ReactComponent as CartIcon } from "../assets/svg/cart-shopping-solid.svg";
 import { ReactComponent as ProfileIcon } from "../assets/svg/user-solid.svg";
-import styles from "../styles/Header.module.css";
-import { useState } from "react";
 
 export default function Header() {
   return (
@@ -42,12 +45,12 @@ export default function Header() {
 
 function Brand() {
   return (
-    <Link to="/">
-      <p className={`navbar-brand bold ${styles["navbar-brand"]}`}>
+    <p className={`navbar-brand bold ${styles["navbar-brand"]}`}>
+      <Link to="/">
         <img src={Logo} alt="" />
         &nbsp; Ecommerce
-      </p>
-    </Link>
+      </Link>
+    </p>
   );
 }
 
@@ -68,7 +71,38 @@ function Cart() {
 }
 
 function Profile() {
-  const [isOpen, setIsOpen] = useState(false);
+  const dispatch = useDispatch();
+  const auth = useSelector((state) => state.auth);
+  const [isLoginOpen, setIsLoginOpen] = useState(false);
+  const [isWarningOpen, setIsWarningOpen] = useState(false);
+
+  const LoggedInMenu = (
+    <>
+      <li>
+        <Link to="/my-orders">
+          <button className="dropdown-item">My Orders</button>
+        </Link>
+      </li>
+      <li>
+        <button
+          className="dropdown-item"
+          onClick={() => setIsWarningOpen(true)}
+        >
+          Logout
+        </button>
+      </li>
+    </>
+  );
+  const LoggedOutMenu = (
+    <>
+      <li>
+        <button className="dropdown-item" onClick={() => setIsLoginOpen(true)}>
+          Login
+        </button>
+      </li>
+    </>
+  );
+
   return (
     <div className="dropdown">
       <button
@@ -80,18 +114,17 @@ function Profile() {
         <ProfileIcon style={{ width: "18px", height: "18px", fill: "white" }} />
       </button>
       <ul className="dropdown-menu dropdown-menu-end">
-        <li>
-          <button className="dropdown-item" onClick={() => setIsOpen(true)}>
-            Login
-          </button>
-        </li>
+        {auth.email !== null ? LoggedInMenu : LoggedOutMenu}
       </ul>
-      <LoginModal
-        isOpen={isOpen}
-        onCancel={() => setIsOpen(false)}
-        onLogin={() => {
-          alert("Logged in!!!");
-          setIsOpen(false);
+      <LoginModal isOpen={isLoginOpen} onClose={() => setIsLoginOpen(false)} />
+      <WarningModal
+        isOpen={isWarningOpen}
+        title="Logout"
+        message="Are you sure you want to logout?"
+        onCancel={() => setIsWarningOpen(false)}
+        onConfirm={() => {
+          dispatch(actions.authActions.logout());
+          setIsWarningOpen(false);
         }}
       />
     </div>

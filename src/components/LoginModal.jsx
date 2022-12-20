@@ -1,16 +1,37 @@
+import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+
 import Modal from "./Modal";
 import styles from "../styles/LoginModal.module.css";
-import { Link } from "react-router-dom";
+import { actions } from "../store";
+import { loginUser } from "../utils/query";
 
 export default function LoginModal(props) {
-  const { isOpen, onLogin, onCancel } = props;
+  const { isOpen, onClose } = props;
+  const dispatch = useDispatch();
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    loginUser("Subhadeep", "12334")
+      .then((response) =>
+        dispatch(
+          actions.authActions.login({
+            email: response.email,
+            password: response.password,
+          })
+        )
+      )
+      .catch((error) => console.log(error));
+    onClose();
+  };
+
   return (
     <Modal isOpen={isOpen}>
       <div className={"card " + styles.card}>
         <div className="card-body">
           <h3 className="card-title">Login</h3>
           <hr />
-          <form onSubmit={onLogin}>
+          <form onSubmit={onSubmit}>
             <div className="form-group mb-3">
               <label>Email</label>
               <input
@@ -33,7 +54,7 @@ export default function LoginModal(props) {
               />
             </div>
             <div className="d-flex justify-content-end mb-5">
-              <button className="btn btn-light" onClick={onCancel}>
+              <button className="btn btn-light" onClick={onClose}>
                 Cancel
               </button>
               <button className="btn btn-dark" type="submit">
@@ -43,7 +64,7 @@ export default function LoginModal(props) {
           </form>
           <p>
             Don't have an account?{" "}
-            <Link to="/register" onClick={onCancel}>
+            <Link to="/register" onClick={onClose}>
               Register
             </Link>
           </p>

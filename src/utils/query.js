@@ -71,3 +71,7 @@ export const getCart = async () => {
   }
   return products;
 };
+
+export const loginUser = async (email, password) => {
+  return { email, password };
+};
