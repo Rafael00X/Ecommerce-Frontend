@@ -2,6 +2,7 @@ import { useState } from "react";
 
 import imagePlaceholder from "../assets/img/image-placeholder.jpg";
 import styles from "../styles/CartProductCard.module.css";
+import WarningModal from "./WarningModal";
 
 export default function CartProductCard(props) {
   const {
@@ -57,6 +58,8 @@ export default function CartProductCard(props) {
 function Controls(props) {
   const { product, count } = props.values;
   const { deleteProduct, updateProduct, setCount } = props.methods;
+  const [isOpen, setIsOpen] = useState(false);
+
   const increment = () => {
     updateProduct({ ...product, quantity: count + 1 });
     setCount((prev) => prev + 1);
@@ -83,11 +86,18 @@ function Controls(props) {
         </button>
       </div>
       <button
-        onClick={remove}
+        onClick={() => setIsOpen(true)}
         className={styles["btn-remove"] + " btn btn-dark"}
       >
         REMOVE
       </button>
+      <WarningModal
+        isOpen={isOpen}
+        message="Are you sure you want to remove it?"
+        onConfirm={remove}
+        onCancel={() => setIsOpen(false)}
+        title="Remove From Cart"
+      />
     </>
   );
 }

@@ -24,7 +24,7 @@
   border-bottom: solid var(--background-color) 1px;
   color: #000;
   display: flex;
-  justify-content: start;
+  justify-content: flex-start;
   padding: 30px 15px;
   text-align: left;
   text-decoration: none;
