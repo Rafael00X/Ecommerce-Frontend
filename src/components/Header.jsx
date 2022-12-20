@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
 
+import LoginModal from "./LoginModal";
 import Logo from "../assets/img/logo.png";
 import { ReactComponent as CartIcon } from "../assets/svg/cart-shopping-solid.svg";
 import { ReactComponent as ProfileIcon } from "../assets/svg/user-solid.svg";
 import styles from "../styles/Header.module.css";
+import { useState } from "react";
 
 export default function Header() {
   return (
@@ -64,6 +66,7 @@ function Cart() {
 }
 
 function Profile() {
+  const [isOpen, setIsOpen] = useState(false);
   return (
     <div className="dropdown">
       <button
@@ -76,9 +79,19 @@ function Profile() {
       </button>
       <ul className="dropdown-menu dropdown-menu-end">
         <li>
-          <button className="dropdown-item">Login</button>
+          <button className="dropdown-item" onClick={() => setIsOpen(true)}>
+            Login
+          </button>
         </li>
       </ul>
+      <LoginModal
+        isOpen={isOpen}
+        onCancel={() => setIsOpen(false)}
+        onLogin={() => {
+          alert("Logged in!!!");
+          setIsOpen(false);
+        }}
+      />
     </div>
   );
 }

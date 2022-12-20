@@ -1,0 +1,8 @@
+.card {
+  width: 400px;
+}
+
+.card a {
+  color: var(--highlight-color);
+  text-decoration: underline;
+}
