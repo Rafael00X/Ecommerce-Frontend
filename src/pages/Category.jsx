@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-import ProductCard from "../components/ProductCard";
+import ProductCard from "../components/cards/ProductCard";
 import { getCategory } from "../utils/query";
 
 export default function Category() {

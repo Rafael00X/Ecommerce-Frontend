@@ -1,0 +1,8 @@
+.btn-header {
+  min-width: 110px;
+  width: 100%;
+}
+
+.btn-header i {
+  margin: 5px;
+}

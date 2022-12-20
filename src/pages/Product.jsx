@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
-import { useParams, useNavigate, Link } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
-import { ReactComponent as CartIcon } from "../assets/svg/cart-shopping-solid.svg";
 import { ReactComponent as StarIcon } from "../assets/svg/star.svg";
 import {
   getProduct,
@@ -9,7 +8,7 @@ import {
   getProductFromCart,
 } from "../utils/query.js";
 import imagePlaceholder from "../assets/img/image-placeholder.jpg";
-import styles from "../styles/Product.module.css";
+import styles from "./Product.module.css";
 
 export default function ProductPage() {
   const [product, setProduct] = useState();

@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 
 import { getCart } from "../utils/query";
-import CartProductCard from "../components/CartProductCard";
-import styles from "../styles/Cart.module.css";
+import CartProductCard from "../components/cards/CartProductCard";
+import styles from "./Cart.module.css";
 
 export default function CartPage() {
   const [products, setProducts] = useState([]);

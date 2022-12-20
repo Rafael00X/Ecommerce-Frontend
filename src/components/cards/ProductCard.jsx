@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import { ReactComponent as StarIcon } from "../assets/svg/star.svg";
-import imagePlaceholder from "../assets/img/image-placeholder.jpg";
-import styles from "../styles/ProductCard.module.css";
+import { ReactComponent as StarIcon } from "../../assets/svg/star.svg";
+import imagePlaceholder from "../../assets/img/image-placeholder.jpg";
+import styles from "./ProductCard.module.css";
 
 export default function ProductCard(props) {
   const {

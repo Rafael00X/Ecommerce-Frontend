@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import imagePlaceholder from "../assets/img/image-placeholder.jpg";
-import styles from "../styles/CategoryCard.module.css";
+import imagePlaceholder from "../../assets/img/image-placeholder.jpg";
+import styles from "./CategoryCard.module.css";
 
 export default function CategoryCard(props) {
   const {

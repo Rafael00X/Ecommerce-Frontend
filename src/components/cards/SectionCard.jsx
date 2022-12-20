@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import CategoryCard from "./CategoryCard";
-import styles from "../styles/SectionCard.module.css";
+import styles from "./SectionCard.module.css";
 
 export default function SectionCard(props) {
   const {

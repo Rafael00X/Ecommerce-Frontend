@@ -1,8 +1,8 @@
 import { useState } from "react";
 
-import imagePlaceholder from "../assets/img/image-placeholder.jpg";
-import styles from "../styles/CartProductCard.module.css";
-import WarningModal from "./WarningModal";
+import imagePlaceholder from "../../assets/img/image-placeholder.jpg";
+import styles from "./CartProductCard.module.css";
+import WarningModal from "../modals/WarningModal";
 
 export default function CartProductCard(props) {
   const {

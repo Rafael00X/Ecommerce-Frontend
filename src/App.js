@@ -5,7 +5,7 @@ import Category from "./pages/Category";
 import Product from "./pages/Product";
 import Section from "./pages/Section";
 import Error from "./pages/Error";
-import Header from "./components/Header";
+import Header from "./components/header/Header";
 import Cart from "./pages/Cart";
 
 export default function App() {

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import SectionCard from "../components/SectionCard";
+import SectionCard from "../components/cards/SectionCard";
 import { getAllSections } from "../utils/query.js";
 
 export default function HomePage() {

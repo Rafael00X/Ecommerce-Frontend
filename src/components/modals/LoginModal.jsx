@@ -2,9 +2,9 @@ import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
 import Modal from "./Modal";
-import styles from "../styles/LoginModal.module.css";
-import { actions } from "../store";
-import { loginUser } from "../utils/query";
+import styles from "./LoginModal.module.css";
+import { actions } from "../../store";
+import { loginUser } from "../../utils/query";
 
 export default function LoginModal(props) {
   const { isOpen, onClose } = props;
