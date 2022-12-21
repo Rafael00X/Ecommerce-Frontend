@@ -1,7 +1,15 @@
-export default function Error() {
-  return (
-    <div>
-      <h1>Error Page</h1>
-    </div>
-  );
+export default function Error(props) {
+  const info = props.info;
+  if (info === "invalid")
+    return (
+      <div>
+        <h1>Invalid URL</h1>
+      </div>
+    );
+  else
+    return (
+      <div>
+        <h1>Unauthorized Access</h1>
+      </div>
+    );
 }
