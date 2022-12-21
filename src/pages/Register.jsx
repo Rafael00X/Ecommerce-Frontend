@@ -1,10 +1,14 @@
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+
+import { actions } from "../store/index";
 import useForm from "../hooks/useForm";
 import { registerUser } from "../utils/query";
 import styles from "./Register.module.css";
 
 export default function Register() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const initialValues = {
     email: "",
     password: "",
@@ -20,8 +24,10 @@ export default function Register() {
       return alert("Passwords must match!");
     if (isNaN(Number(values.pin)) || values.pin.length !== 6)
       return alert("Invalid PIN");
-    registerUser(values);
-    navigate("/");
+    registerUser(values)
+      .then((res) => dispatch(actions.authActions.login(res)))
+      .then(navigate("/"))
+      .catch((error) => console.log(error));
   };
 
   const [values, onChange, onSubmit] = useForm(initialValues, callback);

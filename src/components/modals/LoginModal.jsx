@@ -13,16 +13,8 @@ export default function LoginModal() {
   const onClose = () => dispatch(actions.loginModalActions.close());
 
   const callback = () => {
-    loginUser("Subhadeep", "12334")
-      .then((response) =>
-        dispatch(
-          actions.authActions.login({
-            email: response.email,
-            password: response.password,
-            jwt: "jwt-of-user",
-          })
-        )
-      )
+    loginUser(values.email, values.password)
+      .then((res) => dispatch(actions.authActions.login(res)))
       .catch((error) => console.log(error));
     onClose();
   };
