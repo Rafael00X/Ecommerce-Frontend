@@ -1,9 +1,8 @@
 import { Link } from "react-router-dom";
 
-import ProfileMenu from "./ProfileMenu";
+import Menu from "./Menu";
 import Logo from "../../assets/img/logo.png";
 import styles from "./Header.module.css";
-import { ReactComponent as CartIcon } from "../../assets/svg/cart-shopping-solid.svg";
 
 export default function Header() {
   return (
@@ -25,12 +24,7 @@ export default function Header() {
         <Brand />
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
-            <li className="nav-item">
-              <Cart />
-            </li>
-            <li className="nav-item">
-              <ProfileMenu />
-            </li>
+            <Menu />
           </ul>
         </div>
       </div>
@@ -46,21 +40,5 @@ function Brand() {
         &nbsp; Ecommerce
       </Link>
     </p>
-  );
-}
-
-function Cart() {
-  return (
-    <Link className={`btn btn-dark bold ${styles["btn-header"]}`} to="/cart">
-      <CartIcon
-        style={{
-          width: "20px",
-          height: "20px",
-          fill: "white",
-          marginRight: "8px",
-        }}
-      />
-      Cart
-    </Link>
   );
 }

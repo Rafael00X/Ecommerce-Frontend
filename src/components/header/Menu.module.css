@@ -3,6 +3,10 @@
   width: 100%;
 }
 
+.btn-header a {
+  color: white;
+}
+
 .btn-header i {
   margin: 5px;
 }
