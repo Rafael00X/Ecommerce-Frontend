@@ -9,10 +9,12 @@ import Header from "./components/header/Header";
 import Cart from "./pages/Cart";
 import Orders from "./pages/Orders";
 import Register from "./pages/Register";
+import LoginModal from "./components/modals/LoginModal";
 
 export default function App() {
   return (
     <div id="App">
+      <LoginModal />
       <Header />
       <div id="outer-container">
         <Routes>

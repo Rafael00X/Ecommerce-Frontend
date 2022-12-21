@@ -4,15 +4,15 @@ import { Link } from "react-router-dom";
 
 import { actions } from "../../store";
 import { ReactComponent as ProfileIcon } from "../../assets/svg/user-solid.svg";
-import LoginModal from "../modals/LoginModal";
 import WarningModal from "../modals/WarningModal";
 import styles from "./ProfileMenu.module.css";
 
 export default function Profile() {
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
-  const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [isWarningOpen, setIsWarningOpen] = useState(false);
+
+  const promptForLogin = () => dispatch(actions.loginModalActions.open());
 
   const LoggedInMenu = (
     <>
@@ -34,7 +34,7 @@ export default function Profile() {
   const LoggedOutMenu = (
     <>
       <li>
-        <button className="dropdown-item" onClick={() => setIsLoginOpen(true)}>
+        <button className="dropdown-item" onClick={promptForLogin}>
           Login
         </button>
       </li>
@@ -52,9 +52,8 @@ export default function Profile() {
         <ProfileIcon style={{ width: "18px", height: "18px", fill: "white" }} />
       </button>
       <ul className="dropdown-menu dropdown-menu-end">
-        {auth.email !== null ? LoggedInMenu : LoggedOutMenu}
+        {auth.jwt !== null ? LoggedInMenu : LoggedOutMenu}
       </ul>
-      <LoginModal isOpen={isLoginOpen} onClose={() => setIsLoginOpen(false)} />
       <WarningModal
         isOpen={isWarningOpen}
         title="Logout"

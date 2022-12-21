@@ -1,29 +1,34 @@
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import Modal from "./Modal";
+import useForm from "../../hooks/useForm";
 import styles from "./LoginModal.module.css";
 import { actions } from "../../store";
 import { loginUser } from "../../utils/query";
 
-export default function LoginModal(props) {
-  const { isOpen, onClose } = props;
+export default function LoginModal() {
   const dispatch = useDispatch();
+  const isOpen = useSelector((state) => state.loginModal.isOpen);
+  const onClose = () => dispatch(actions.loginModalActions.close());
 
-  const onSubmit = (e) => {
-    e.preventDefault();
+  const callback = () => {
     loginUser("Subhadeep", "12334")
       .then((response) =>
         dispatch(
           actions.authActions.login({
             email: response.email,
             password: response.password,
+            jwt: "jwt-of-user",
           })
         )
       )
       .catch((error) => console.log(error));
     onClose();
   };
+
+  const initialState = { email: "", password: "" };
+  const [values, onChange, onSubmit] = useForm(initialState, callback);
 
   return (
     <Modal isOpen={isOpen}>
@@ -40,6 +45,9 @@ export default function LoginModal(props) {
                 id="exampleInputEmail1"
                 aria-describedby="emailHelp"
                 placeholder="Enter email"
+                name="email"
+                value={values.email}
+                onChange={onChange}
                 required
               />
             </div>
@@ -50,6 +58,9 @@ export default function LoginModal(props) {
                 className="form-control"
                 id="exampleInputPassword1"
                 placeholder="Enter password"
+                name="password"
+                value={values.password}
+                onChange={onChange}
                 required
               />
             </div>
