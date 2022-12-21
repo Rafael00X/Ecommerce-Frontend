@@ -2,6 +2,7 @@
   --background-color: #eee;
   --border-color-dark: #999;
   --border-color-light: #ddd;
+  ---dark-color: #212529;
   --grey-text-color: #888;
   --highlight-color: #9b4eee;
 }
@@ -56,4 +57,12 @@ img {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.zoom {
+  transition: 300ms;
+}
+
+.zoom:hover {
+  transform: scale(1.2);
 }

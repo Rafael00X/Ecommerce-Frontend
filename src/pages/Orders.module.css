@@ -1,0 +1,33 @@
+.container {
+  min-height: 80vh;
+  padding: 20px;
+  text-align: center;
+}
+
+.name {
+  text-align: left;
+}
+
+.table {
+  text-align: center;
+}
+
+.table img {
+  margin-right: 30px;
+}
+
+.table th {
+  background-color: var(---dark-color);
+  border: 1px solid var(---dark-color);
+  color: white;
+  font-weight: 500;
+  padding: 20px;
+}
+
+.table td {
+  padding: 20px;
+}
+
+.table tr {
+  border: 1px solid var(---dark-color);
+}
