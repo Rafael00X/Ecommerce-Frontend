@@ -15,7 +15,7 @@ export default function Profile() {
 
   const promptForLogin = () => dispatch(actions.loginModalActions.open());
 
-  if (auth.jwt === null)
+  if (!auth.isLoggedIn)
     return (
       <li className="nav-item">
         <div

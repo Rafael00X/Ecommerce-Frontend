@@ -1,9 +1,11 @@
 const { createSlice } = require("@reduxjs/toolkit");
 
+const TOKEN_NAME = "auth-token";
+const token = localStorage.getItem(TOKEN_NAME);
+
 const initialState = {
-  email: null,
-  password: null,
-  jwt: null,
+  token: token,
+  isLoggedIn: !!token,
 };
 
 const authSlice = createSlice({
@@ -11,14 +13,14 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     login: (state, action) => {
-      state.email = action.payload.email;
-      state.password = action.payload.password;
-      state.jwt = action.payload.jwt;
+      state.token = action.payload.token;
+      state.isLoggedIn = true;
+      localStorage.setItem(TOKEN_NAME, action.payload.token);
     },
     logout: (state) => {
-      state.email = null;
-      state.password = null;
-      state.jwt = null;
+      state.token = null;
+      state.isLoggedIn = false;
+      localStorage.removeItem(TOKEN_NAME);
     },
   },
 });

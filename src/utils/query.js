@@ -73,15 +73,11 @@ export const getCart = async () => {
 };
 
 export const loginUser = async (email, password) => {
-  return { email, password, jwt: "jwt-of-user" };
+  return { token: "jwt-of-user" };
 };
 
 export const registerUser = async (data) => {
-  return {
-    email: data.email,
-    password: data.password,
-    jwt: "jwt-of-user",
-  };
+  return { token: "jwt-of-user" };
 };
 
 export const placeOrder = () => {
