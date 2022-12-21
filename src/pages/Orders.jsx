@@ -21,8 +21,8 @@ export default function Order() {
           </tr>
         </thead>
         <tbody>
-          {orders.map((order) => (
-            <tr>
+          {orders.map((order, index) => (
+            <tr key={index}>
               <td className={styles.name}>
                 <div className="d-flex">
                   <Link to={`/product/${order.productId}`}>
