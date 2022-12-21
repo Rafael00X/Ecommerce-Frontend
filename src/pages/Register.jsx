@@ -10,6 +10,7 @@ export default function Register() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const initialValues = {
+    name: "",
     email: "",
     password: "",
     confirmPassword: "",
@@ -35,7 +36,20 @@ export default function Register() {
   return (
     <div className={styles.container + " bg-white"}>
       <form onSubmit={onSubmit}>
-        <h3>Login Credentials</h3>
+        <h3>Credentials</h3>
+        <div className="form-group">
+          <label>
+            Full Name
+            <input
+              type="text"
+              className="form-control"
+              name="name"
+              value={values.name}
+              onChange={onChange}
+              required
+            />
+          </label>
+        </div>
         <div className="form-group">
           <label>
             Email address
