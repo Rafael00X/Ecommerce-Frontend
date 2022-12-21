@@ -1,0 +1,22 @@
+.container {
+  padding: 20px 40px;
+}
+
+.container button {
+  margin-top: 40px;
+}
+
+.container div {
+  width: 100%;
+}
+
+.container input {
+  max-width: 500px;
+  min-width: 200px;
+  width: 80%;
+}
+
+.container label {
+  margin: 20px 0;
+  width: 100%;
+}

@@ -76,6 +76,10 @@ export const loginUser = async (email, password) => {
   return { email, password };
 };
 
+export const registerUser = (data) => {
+  // TODO
+};
+
 export const placeOrder = () => {
   // TODO
   const cart = JSON.parse(localStorage.getItem("cart"));

@@ -8,6 +8,7 @@ import Error from "./pages/Error";
 import Header from "./components/header/Header";
 import Cart from "./pages/Cart";
 import Orders from "./pages/Orders";
+import Register from "./pages/Register";
 
 export default function App() {
   return (
@@ -21,6 +22,7 @@ export default function App() {
           <Route path="/section/:sectionId" element={<Section />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/orders" element={<Orders />} />
+          <Route path="/register" element={<Register />} />
           <Route path="/*" element={<Error />} />
         </Routes>
       </div>
