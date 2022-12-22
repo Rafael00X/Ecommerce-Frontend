@@ -9,6 +9,7 @@ import {
   getProduct,
   addProductToCart,
   getProductFromCart,
+  deleteReviewOfProduct,
 } from "../utils/query.js";
 import imagePlaceholder from "../assets/img/image-placeholder.jpg";
 import styles from "./Product.module.css";
@@ -52,7 +53,7 @@ export default function ProductPage() {
           </div>
         </div>
         <hr />
-        <Reviews product={product} />
+        <Reviews product={product} setProduct={setProduct} />
       </div>
     </>
   );
@@ -157,16 +158,36 @@ function Details(props) {
 }
 
 function Reviews(props) {
-  const { product } = props;
+  const { product, setProduct } = props;
+  const user = useSelector((state) => state.auth.user);
+
   if (product.reviews.length === 0) return <AddReview />;
+  const ownReview = product.reviews.find(
+    (review) => review.userId === Number(user?.userId)
+  );
+  const handleDelete = () => {
+    deleteReviewOfProduct(ownReview)
+      .then((res) => setProduct(res))
+      .catch((err) => alert(err));
+  };
+  console.log(product.reviews);
+  console.log(user);
   return (
     <>
       <h3>Reviews</h3>
       {product.reviews.map((review) => {
-        return <ReviewCard review={review} />;
+        return <ReviewCard key={review.reviewId} review={review} />;
       })}
-      <hr />
-      <AddReview />
+      {!ownReview ? (
+        <>
+          <hr />
+          <AddReview setProduct={setProduct} productId={product.productId} />
+        </>
+      ) : (
+        <button type="button" className="btn btn-dark" onClick={handleDelete}>
+          Delete Review
+        </button>
+      )}
     </>
   );
 }

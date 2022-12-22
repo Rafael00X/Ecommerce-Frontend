@@ -135,3 +135,12 @@ const getReviewsOfProduct = async (productId) => {
   });
   return reviews;
 };
+
+export const addReviewOfProduct = async (review) => {
+  reviewData.push(review);
+};
+
+export const deleteReviewOfProduct = async (review) => {
+  // TODO
+  return await getProduct(review.productId);
+};

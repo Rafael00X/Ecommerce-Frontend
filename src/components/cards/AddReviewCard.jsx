@@ -3,10 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { actions } from "../../store/index";
 import { ReactComponent as StarIcon } from "../../assets/svg/star.svg";
+import { addReviewOfProduct } from "../../utils/query";
 import styles from "./AddReviewCard.module.css";
 
 export default function AddReview(props) {
-  const { productId } = props;
+  const { productId, setProduct } = props;
   const [values, setValues] = useState({
     rating: 0,
     text: "",
@@ -17,7 +18,9 @@ export default function AddReview(props) {
 
   const submit = () => {
     if (!isLoggedIn) return dispatch(actions.loginModalActions.open());
-    // TODO - Add Review
+    addReviewOfProduct({ ...values, productId })
+      .then((res) => setProduct(res))
+      .catch((err) => alert(err));
     alert("Review Added");
   };
 
