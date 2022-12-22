@@ -98,8 +98,7 @@ export const registerUser = async (data) => {
   return { token: "jwt-of-user" };
 };
 
-export const placeOrder = () => {
-  // TODO
+export const placeOrder = async () => {
   const cart = JSON.parse(localStorage.getItem("cart"));
   if (!cart) return false;
   let orders = JSON.parse(localStorage.getItem("orders"));
@@ -112,7 +111,7 @@ export const placeOrder = () => {
   return true;
 };
 
-export const getOrders = () => {
+export const getOrders = async () => {
   const orders = JSON.parse(localStorage.getItem("orders"));
   if (!orders) return [];
   return orders.map((order) => {

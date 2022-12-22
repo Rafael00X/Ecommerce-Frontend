@@ -73,7 +73,9 @@ export default function CartPage() {
 function Payment(props) {
   const { total } = props;
   const handlePay = () => {
-    placeOrder();
+    placeOrder()
+      .then(() => alert("Order Placed!"))
+      .catch((err) => alert(err));
   };
   return (
     <div className={styles.payment}>

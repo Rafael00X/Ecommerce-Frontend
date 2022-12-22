@@ -1,13 +1,20 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import MessageCard from "../components/cards/MessageCard";
 
 import { getOrders } from "../utils/query";
 import styles from "./Orders.module.css";
 
-export default function Order() {
-  const orders = getOrders();
+export default function Orders() {
+  const [orders, setOrders] = useState([]);
+  useEffect(() => {
+    getOrders()
+      .then((res) => setOrders(res))
+      .catch((err) => alert(err));
+  }, []);
 
   if (!orders || orders.length === 0)
-    return <h1 className={styles.container + " bg-white"}>No Orders Yet</h1>;
+    return <MessageCard message="No Orders Yet" />;
 
   return (
     <div className={styles.container + " bg-white"}>
