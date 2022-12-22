@@ -24,10 +24,7 @@ export default function App() {
           <Route path="/category/:categoryId" element={<Category />} />
           <Route path="/product/:productId" element={<Product />} />
           <Route path="/section/:sectionId" element={<Section />} />
-          <Route
-            path="/cart"
-            element={isLoggedIn ? <Cart /> : <Navigate to="/unauthorized" />}
-          />
+          <Route path="/cart" element={<Cart />} />
           <Route
             path="/orders"
             element={isLoggedIn ? <Orders /> : <Navigate to="/unauthorized" />}
