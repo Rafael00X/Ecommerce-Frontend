@@ -1,18 +1,26 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import MessageCard from "../components/cards/MessageCard";
+import { useSelector } from "react-redux";
 
+import MessageCard from "../components/cards/MessageCard";
 import { getOrders } from "../utils/query";
 import styles from "./Orders.module.css";
 
 export default function Orders() {
   const [orders, setOrders] = useState([]);
-  useEffect(() => {
-    getOrders()
-      .then((res) => setOrders(res))
-      .catch((err) => alert(err));
-  }, []);
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
 
+  useEffect(() => {
+    if (isLoggedIn) {
+      getOrders()
+        .then((res) => setOrders(res))
+        .catch((err) => alert(err));
+    } else {
+      setOrders([]);
+    }
+  }, [isLoggedIn]);
+
+  if (!isLoggedIn) return <MessageCard message="Not Logged In" />;
   if (!orders || orders.length === 0)
     return <MessageCard message="No Orders Yet" />;
 
@@ -35,6 +43,7 @@ export default function Orders() {
                   <Link to={`/product/${order.productId}`}>
                     <img
                       src={order.imageUrl}
+                      alt="product"
                       width="100px"
                       height="100px"
                       className="zoom"

@@ -25,19 +25,12 @@ export default function App() {
           <Route path="/product/:productId" element={<Product />} />
           <Route path="/section/:sectionId" element={<Section />} />
           <Route path="/cart" element={<Cart />} />
-          <Route
-            path="/orders"
-            element={isLoggedIn ? <Orders /> : <Navigate to="/unauthorized" />}
-          />
+          <Route path="/orders" element={<Orders />} />
           <Route
             path="/register"
             element={isLoggedIn ? <Navigate to="/" /> : <Register />}
           />
-          <Route
-            path="/unauthorized"
-            element={isLoggedIn ? <Navigate to="/" /> : <Error info="auth" />}
-          />
-          <Route path="/*" element={<Error info="invalid" />} />
+          <Route path="/*" element={<Error />} />
         </Routes>
       </div>
     </div>

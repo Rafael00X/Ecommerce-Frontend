@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
-import { actions } from "../store/index";
 import {
   getCart,
   placeOrder,
@@ -14,7 +13,6 @@ import MessageCard from "../components/cards/MessageCard";
 
 export default function CartPage() {
   const [products, setProducts] = useState([]);
-  const dispatch = useDispatch();
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
 
   const deleteProduct = (product) => {
@@ -37,9 +35,8 @@ export default function CartPage() {
         .catch((error) => console.log(error));
     } else {
       setProducts([]);
-      dispatch(actions.loginModalActions.open());
     }
-  }, [isLoggedIn, dispatch]);
+  }, [isLoggedIn]);
 
   if (!isLoggedIn) return <MessageCard message="Not Logged In" />;
   if (!products || products.length === 0)
