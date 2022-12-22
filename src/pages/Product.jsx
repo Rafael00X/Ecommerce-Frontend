@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
 
+import { actions } from "../store/index";
+import { ReactComponent as CartIcon } from "../assets/svg/cart-shopping-solid.svg";
 import { ReactComponent as StarIcon } from "../assets/svg/star.svg";
 import {
   getProduct,
@@ -53,9 +56,13 @@ export default function ProductPage() {
 
 function CartButton(props) {
   const { productId } = props;
+  const dispatch = useDispatch();
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const [isAddedToCart, setIsAddedToCart] = useState(false);
   const navigate = useNavigate();
+
   const handleAddToCart = () => {
+    if (!isLoggedIn) return dispatch(actions.loginModalActions.open());
     addProductToCart(productId, 1)
       .then((response) => navigate("/cart"))
       .catch((error) => console.log(error));
@@ -65,18 +72,30 @@ function CartButton(props) {
   };
 
   useEffect(() => {
-    getProductFromCart(productId)
-      .then((product) => {
-        if (product) setIsAddedToCart(true);
-      })
-      .catch((error) => console.log(error));
-  }, [productId]);
+    if (isLoggedIn) {
+      getProductFromCart(productId)
+        .then((product) => {
+          if (product) setIsAddedToCart(true);
+        })
+        .catch((error) => console.log(error));
+    } else {
+      setIsAddedToCart(false);
+    }
+  }, [isLoggedIn, productId]);
 
   return (
     <button
       className={styles["btn-cart"] + " btn btn-dark"}
       onClick={isAddedToCart ? handleGoToCart : handleAddToCart}
     >
+      <CartIcon
+        style={{
+          width: "20px",
+          height: "20px",
+          fill: "white",
+          marginRight: "8px",
+        }}
+      />{" "}
       {isAddedToCart ? "GO TO CART" : "ADD TO CART"}
     </button>
   );

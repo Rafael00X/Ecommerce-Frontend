@@ -36,7 +36,10 @@ export default function App() {
             path="/register"
             element={isLoggedIn ? <Navigate to="/" /> : <Register />}
           />
-          <Route path="/unauthorized" element={<Error info="auth" />} />
+          <Route
+            path="/unauthorized"
+            element={isLoggedIn ? <Navigate to="/" /> : <Error info="auth" />}
+          />
           <Route path="/*" element={<Error info="invalid" />} />
         </Routes>
       </div>
