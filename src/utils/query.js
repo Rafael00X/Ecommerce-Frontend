@@ -91,7 +91,13 @@ export const getCart = async () => {
 };
 
 export const loginUser = async (email, password) => {
-  return { token: "jwt-of-user" };
+  return {
+    token: "jwt-of-user",
+    user: {
+      userId: "1",
+      userName: "Subhadeep Chakraborty",
+    },
+  };
 };
 
 export const registerUser = async (data) => {
