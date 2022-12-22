@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { actions } from "../../store/index";
 import { ReactComponent as StarIcon } from "../../assets/svg/star.svg";
 import { addReviewOfProduct } from "../../utils/query";
-import styles from "./AddReviewCard.module.css";
+import styles from "./AddReview.module.css";
 
 export default function AddReview(props) {
   const { productId, setProduct } = props;
