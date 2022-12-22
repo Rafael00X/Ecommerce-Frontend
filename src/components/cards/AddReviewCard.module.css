@@ -1,0 +1,30 @@
+.btn {
+  margin-top: 20px;
+}
+
+.container {
+  margin-top: 20px;
+}
+
+.star {
+  height: 40px;
+  width: 40px;
+}
+
+.star.inactive {
+  fill: var(--border-color-dark);
+}
+
+.star.active {
+  fill: var(--highlight-color);
+}
+
+.text {
+  display: block;
+  height: 200px;
+  max-width: 500px;
+  margin-top: 20px;
+  padding: 5px;
+  resize: none;
+  width: 100%;
+}

@@ -12,6 +12,8 @@ import {
 } from "../utils/query.js";
 import imagePlaceholder from "../assets/img/image-placeholder.jpg";
 import styles from "./Product.module.css";
+import ReviewCard from "../components/cards/ReviewCard";
+import AddReview from "../components/cards/AddReviewCard";
 
 export default function ProductPage() {
   const [product, setProduct] = useState();
@@ -49,6 +51,14 @@ export default function ProductPage() {
             <Details product={product} />
           </div>
         </div>
+        <hr />
+        <h3>Reviews</h3>
+        {product.reviews &&
+          product.reviews.map((review) => {
+            return <ReviewCard review={review} />;
+          })}
+        <hr />
+        <AddReview />
       </div>
     </>
   );
