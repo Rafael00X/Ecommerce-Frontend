@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import { ReactComponent as CartIcon } from "../../assets/svg/cart-shopping-solid.svg";
 import { actions } from "../../store";
@@ -10,6 +10,7 @@ import styles from "./Menu.module.css";
 
 export default function Profile() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const auth = useSelector((state) => state.auth);
   const [isWarningOpen, setIsWarningOpen] = useState(false);
 
@@ -38,37 +39,39 @@ export default function Profile() {
   return (
     <>
       <li className="nav-item">
-        <div className={`btn btn-dark bold ${styles["btn-header"]}`}>
-          <Link to="/cart">
-            <CartIcon
-              style={{
-                width: "20px",
-                height: "20px",
-                fill: "white",
-                marginRight: "8px",
-              }}
-            />
-            Cart
-          </Link>
-        </div>
+        <button
+          className={`btn btn-dark bold ${styles["btn-header"]}`}
+          onClick={() => navigate("/cart")}
+        >
+          <CartIcon
+            style={{
+              width: "20px",
+              height: "20px",
+              fill: "white",
+              marginRight: "8px",
+            }}
+          />
+          Cart
+        </button>
       </li>
       <li className="nav-item">
-        <div className={`btn btn-dark bold ${styles["btn-header"]}`}>
-          <Link to="/orders">
-            <CartIcon
-              style={{
-                width: "20px",
-                height: "20px",
-                fill: "white",
-                marginRight: "8px",
-              }}
-            />
-            Orders
-          </Link>
-        </div>
+        <button
+          className={`btn btn-dark bold ${styles["btn-header"]}`}
+          onClick={() => navigate("/orders")}
+        >
+          <CartIcon
+            style={{
+              width: "20px",
+              height: "20px",
+              fill: "white",
+              marginRight: "8px",
+            }}
+          />
+          Orders
+        </button>
       </li>
       <li className="nav-item">
-        <div
+        <button
           className={`btn btn-dark bold ${styles["btn-header"]}`}
           onClick={() => setIsWarningOpen(true)}
         >
@@ -81,7 +84,7 @@ export default function Profile() {
             }}
           />
           Logout
-        </div>
+        </button>
       </li>
       <WarningModal
         isOpen={isWarningOpen}
