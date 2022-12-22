@@ -1,26 +1,27 @@
 import { useEffect, useState } from "react";
 
-import { getCart, placeOrder } from "../utils/query";
+import {
+  getCart,
+  placeOrder,
+  removeProductFromCart,
+  updateProductInCart,
+} from "../utils/query";
 import CartProductCard from "../components/cards/CartProductCard";
 import styles from "./Cart.module.css";
 
 export default function CartPage() {
   const [products, setProducts] = useState([]);
+  console.log(products);
 
   const deleteProduct = (product) => {
-    setProducts((prevProducts) =>
-      prevProducts.filter((p) => p.productId !== product.productId)
-    );
+    removeProductFromCart(product.productId)
+      .then((res) => setProducts(res))
+      .catch((err) => alert(err));
   };
   const updateProduct = (product) => {
-    setProducts((prevProducts) => {
-      const newProducts = [];
-      prevProducts.forEach((p) => {
-        if (p.productId === product.productId) p.quantity = product.quantity;
-        newProducts.push(p);
-      });
-      return newProducts;
-    });
+    updateProductInCart(product.productId, product.quantity)
+      .then((res) => setProducts(res))
+      .catch((err) => alert(err));
   };
 
   useEffect(() => {

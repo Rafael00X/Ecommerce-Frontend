@@ -72,6 +72,7 @@ function Controls(props) {
   };
   const remove = () => {
     deleteProduct(product);
+    setIsOpen(false);
   };
 
   return (
