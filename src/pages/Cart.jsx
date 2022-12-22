@@ -55,12 +55,13 @@ export default function CartPage() {
 
   return (
     <div className="bg-white">
-      {products.map((product, index) => {
+      {products.map((product) => {
         return (
           <CartProductCard
             key={product.productId}
-            values={{ index, product }}
-            methods={{ deleteProduct, updateProduct }}
+            product={product}
+            deleteProduct={deleteProduct}
+            updateProduct={updateProduct}
           />
         );
       })}

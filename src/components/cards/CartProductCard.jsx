@@ -5,31 +5,29 @@ import styles from "./CartProductCard.module.css";
 import WarningModal from "../modals/WarningModal";
 
 export default function CartProductCard(props) {
-  const {
-    product,
-    product: { productName, price, imageUrl, quantity, discount },
-  } = props.values;
-  const { deleteProduct, updateProduct } = props.methods;
+  const { product, deleteProduct, updateProduct } = props;
+  const [count, setCount] = useState(product.quantity);
 
-  const [count, setCount] = useState(quantity);
-  const discountedPrice = Math.floor((price * (100 - discount)) / 100);
+  const discountedPrice = Math.floor(
+    (product.price * (100 - product.discount)) / 100
+  );
 
   return (
     <div className={styles.card}>
       <div>
         <img
-          src={imageUrl || imagePlaceholder}
+          src={product.imageUrl || imagePlaceholder}
           alt="product"
           height="150px"
           width="100px"
         />
       </div>
       <div className={styles.details}>
-        <h5 className="ovf-ellipse">{productName}</h5>
-        {discount === 0 ? (
+        <h5 className="ovf-ellipse">{product.productName}</h5>
+        {product.discount === 0 ? (
           <div className={styles.price}>
             <span className={styles.main}>
-              &#8377;{(price * count).toLocaleString()}
+              &#8377;{(product.price * count).toLocaleString()}
             </span>
           </div>
         ) : (
@@ -39,9 +37,9 @@ export default function CartProductCard(props) {
             </span>
             <span className={styles.original}>
               {" "}
-              &#8377;{(price * count).toLocaleString()}
+              &#8377;{(product.price * count).toLocaleString()}
             </span>
-            <span className={styles.discount}>{discount}% off</span>
+            <span className={styles.discount}>{product.discount}% off</span>
           </div>
         )}
       </div>
