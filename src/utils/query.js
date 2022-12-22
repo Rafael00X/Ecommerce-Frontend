@@ -1,4 +1,4 @@
-import { categoryData, productData, sectionData } from "./database";
+import { categoryData, productData, reviewData, sectionData } from "./database";
 
 export const getAllSections = async () => {
   sectionData.forEach(async (section) => {
@@ -37,7 +37,7 @@ export const getProduct = async (productId) => {
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
   product.totalRating = 12;
   product.reviewCount = 3;
-  // product.reviews = [];
+  product.reviews = await getReviewsOfProduct(productId);
   return product;
 };
 
@@ -126,4 +126,12 @@ export const getOrders = async () => {
     );
     return { ...order, ...product };
   });
+};
+
+const getReviewsOfProduct = async (productId) => {
+  let reviews = [];
+  reviewData.forEach((review) => {
+    if (review.productId === productId) reviews.push(review);
+  });
+  return reviews;
 };

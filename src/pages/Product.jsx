@@ -52,13 +52,7 @@ export default function ProductPage() {
           </div>
         </div>
         <hr />
-        <h3>Reviews</h3>
-        {product.reviews &&
-          product.reviews.map((review) => {
-            return <ReviewCard review={review} />;
-          })}
-        <hr />
-        <AddReview />
+        <Reviews product={product} />
       </div>
     </>
   );
@@ -159,5 +153,20 @@ function Details(props) {
         <span>{description}</span>
       </div>
     </div>
+  );
+}
+
+function Reviews(props) {
+  const { product } = props;
+  if (product.reviews.length === 0) return <AddReview />;
+  return (
+    <>
+      <h3>Reviews</h3>
+      {product.reviews.map((review) => {
+        return <ReviewCard review={review} />;
+      })}
+      <hr />
+      <AddReview />
+    </>
   );
 }
