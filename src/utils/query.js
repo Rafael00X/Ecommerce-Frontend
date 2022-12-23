@@ -41,7 +41,7 @@ export const getProduct = async (productId) => {
   return product;
 };
 
-export const addProductToCart = async (productId) => {
+export const addProductToCart = async (productId, user) => {
   let cart = JSON.parse(localStorage.getItem("cart"));
   if (!cart) cart = { products: [] };
   if (cart.products.find((product) => product.productId === productId))
@@ -51,7 +51,7 @@ export const addProductToCart = async (productId) => {
   return true;
 };
 
-export const removeProductFromCart = async (productId) => {
+export const removeProductFromCart = async (productId, user) => {
   let cart = JSON.parse(localStorage.getItem("cart"));
   if (!cart) cart = { products: [] };
   cart.products = cart.products.filter(
@@ -61,7 +61,7 @@ export const removeProductFromCart = async (productId) => {
   return await getCart();
 };
 
-export const updateProductInCart = async (productId, quantity) => {
+export const updateProductInCart = async (productId, quantity, user) => {
   let cart = JSON.parse(localStorage.getItem("cart"));
   if (!cart) localStorage.setItem("cart", JSON.stringify({ products: [] }));
   const product = cart.products.find(
@@ -72,13 +72,13 @@ export const updateProductInCart = async (productId, quantity) => {
   return await getCart();
 };
 
-export const getProductFromCart = async (productId) => {
+export const getProductFromCart = async (productId, user) => {
   const cart = JSON.parse(localStorage.getItem("cart"));
   if (!cart) return false;
   return cart.products.find((product) => product.productId === productId);
 };
 
-export const getCart = async () => {
+export const getCart = async (user) => {
   const cart = JSON.parse(localStorage.getItem("cart"));
   if (!cart) return [];
   const products = [];
@@ -111,7 +111,7 @@ export const registerUser = async (data) => {
   };
 };
 
-export const placeOrder = async () => {
+export const placeOrder = async (user) => {
   const cart = JSON.parse(localStorage.getItem("cart"));
   if (!cart) return false;
   let orders = JSON.parse(localStorage.getItem("orders"));
@@ -121,10 +121,11 @@ export const placeOrder = async () => {
     orders.push(product);
   });
   localStorage.setItem("orders", JSON.stringify(orders));
+  localStorage.removeItem("cart");
   return true;
 };
 
-export const getOrders = async () => {
+export const getOrders = async (user) => {
   const orders = JSON.parse(localStorage.getItem("orders"));
   if (!orders) return [];
   return orders.map((order) => {
@@ -146,10 +147,10 @@ const getReviewsOfProduct = async (productId) => {
   return reviews;
 };
 
-export const addReviewOfProduct = async (review) => {
+export const addReviewOfProduct = async (review, user) => {
   review.createdAt = "23/12/2022";
-  review.userName = "BingeBuyer101";
-  review.userId = 1;
+  review.userName = user.userName;
+  review.userId = user.userId;
 
   let reviewData = JSON.parse(localStorage.getItem("review-data"));
   if (!reviewData)
@@ -165,7 +166,7 @@ export const addReviewOfProduct = async (review) => {
   return { ...product };
 };
 
-export const deleteReviewOfProduct = async (review) => {
+export const deleteReviewOfProduct = async (review, user) => {
   let reviewData = JSON.parse(localStorage.getItem("review-data"));
   if (reviewData) {
     reviewData.reviews = reviewData.reviews.filter(

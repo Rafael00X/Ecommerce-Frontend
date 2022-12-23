@@ -60,13 +60,13 @@ export default function ProductPage() {
 function CartButton(props) {
   const { productId } = props;
   const dispatch = useDispatch();
-  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+  const { isLoggedIn, user } = useSelector((state) => state.auth);
   const [isAddedToCart, setIsAddedToCart] = useState(false);
   const navigate = useNavigate();
 
   const handleAddToCart = () => {
     if (!isLoggedIn) return dispatch(actions.loginModalActions.open());
-    addProductToCart(productId, 1)
+    addProductToCart(productId, user)
       .then((response) => navigate("/cart"))
       .catch((error) => console.log(error));
   };
@@ -76,7 +76,7 @@ function CartButton(props) {
 
   useEffect(() => {
     if (isLoggedIn) {
-      getProductFromCart(productId)
+      getProductFromCart(productId, user)
         .then((product) => {
           if (product) setIsAddedToCart(true);
         })
@@ -84,7 +84,7 @@ function CartButton(props) {
     } else {
       setIsAddedToCart(false);
     }
-  }, [isLoggedIn, productId]);
+  }, [isLoggedIn, productId, user]);
 
   return (
     <button

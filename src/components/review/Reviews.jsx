@@ -1,26 +1,32 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
-import { deleteReviewOfProduct } from "../../utils/query";
+import { actions } from "../../store/index";
+import { addReviewOfProduct, deleteReviewOfProduct } from "../../utils/query";
 import AddReview from "./AddReview";
 import ReviewCard from "./ReviewCard";
 
 export default function Reviews(props) {
   const { product, setProduct } = props;
-  const user = useSelector((state) => state.auth.user);
+  const { isLoggedIn, user } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
 
-  if (product.reviews.length === 0)
-    return <AddReview setProduct={setProduct} productId={product.productId} />;
+  const handleAdd = (values) => {
+    if (!isLoggedIn) return dispatch(actions.loginModalActions.open());
+    addReviewOfProduct({ ...values, productId: product.productId }, user)
+      .then((response) => setProduct(response))
+      .catch((error) => alert(error));
+  };
 
   const ownReview = product.reviews.find(
     (review) => review.userId === Number(user?.userId)
   );
   const handleDelete = () => {
-    deleteReviewOfProduct(ownReview)
-      .then((res) => {
-        setProduct(res);
-      })
-      .catch((err) => alert(err));
+    deleteReviewOfProduct(ownReview, user)
+      .then((response) => setProduct(response))
+      .catch((error) => alert(error));
   };
+
+  if (product.reviews.length === 0) return <AddReview handleAdd={handleAdd} />;
 
   return (
     <>
@@ -31,7 +37,7 @@ export default function Reviews(props) {
       {!ownReview ? (
         <>
           <hr />
-          <AddReview setProduct={setProduct} productId={product.productId} />
+          <AddReview handleAdd={handleAdd} />
         </>
       ) : (
         <button type="button" className="btn btn-dark" onClick={handleDelete}>

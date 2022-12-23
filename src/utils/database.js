@@ -1,6 +1,6 @@
 export const userData = [
   { userId: 1, userName: "BingeBuyer101", email: "e@g.c", password: "123" },
-  { userId: 2, userName: "AnotherBuyer22", email: "e2@gc.c", password: "123" },
+  { userId: 2, userName: "AnotherBuyer22", email: "e2@g.c", password: "123" },
 ];
 
 export const sectionData = [

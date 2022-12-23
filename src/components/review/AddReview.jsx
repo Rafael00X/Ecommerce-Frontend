@@ -1,26 +1,17 @@
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 
-import { actions } from "../../store/index";
 import { ReactComponent as StarIcon } from "../../assets/svg/star.svg";
-import { addReviewOfProduct } from "../../utils/query";
 import styles from "./AddReview.module.css";
 
 export default function AddReview(props) {
-  const { productId, setProduct } = props;
+  const { handleAdd } = props;
   const [values, setValues] = useState({
     rating: 0,
     text: "",
   });
 
-  const dispatch = useDispatch();
-  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
-
   const submit = () => {
-    if (!isLoggedIn) return dispatch(actions.loginModalActions.open());
-    addReviewOfProduct({ ...values, productId })
-      .then((res) => setProduct(res))
-      .catch((err) => alert(err));
+    handleAdd(values);
   };
 
   const stars = [];

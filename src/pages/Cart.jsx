@@ -13,22 +13,22 @@ import MessageCard from "../components/cards/MessageCard";
 
 export default function CartPage() {
   const [products, setProducts] = useState([]);
-  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+  const { isLoggedIn, user } = useSelector((state) => state.auth);
 
   const deleteProduct = (product) => {
-    removeProductFromCart(product.productId)
+    removeProductFromCart(product.productId, user)
       .then((res) => setProducts(res))
       .catch((err) => alert(err));
   };
   const updateProduct = (product) => {
-    updateProductInCart(product.productId, product.quantity)
+    updateProductInCart(product.productId, product.quantity, user)
       .then((res) => setProducts(res))
       .catch((err) => alert(err));
   };
 
   useEffect(() => {
     if (isLoggedIn) {
-      getCart()
+      getCart(user)
         .then((products) => {
           setProducts(products);
         })
@@ -36,7 +36,7 @@ export default function CartPage() {
     } else {
       setProducts([]);
     }
-  }, [isLoggedIn]);
+  }, [isLoggedIn, user]);
 
   if (!isLoggedIn) return <MessageCard message="Not Logged In" />;
   if (!products || products.length === 0)
@@ -62,16 +62,19 @@ export default function CartPage() {
           />
         );
       })}
-      <Payment total={total} />
+      <Payment total={total} user={user} setProducts={setProducts} />
     </div>
   );
 }
 
 function Payment(props) {
-  const { total } = props;
+  const { total, user, setProducts } = props;
   const handlePay = () => {
-    placeOrder()
-      .then(() => alert("Order Placed!"))
+    placeOrder(user)
+      .then(() => {
+        alert("Order Placed!");
+        setProducts([]);
+      })
       .catch((err) => alert(err));
   };
   return (
