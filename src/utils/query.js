@@ -18,7 +18,18 @@ export const getSection = async (sectionId) => {
 };
 
 const getProductsOfCategory = async (categoryId) => {
-  return productData.filter((product) => product.categoryId === categoryId);
+  // return productData.filter((product) => product.categoryId === categoryId);
+  // return productData.map(async (product) => {
+  //   if (product.categoryId === categoryId)
+  //     return await getProduct(product.productId);
+  // });
+  const products = [];
+  for (let i = 0; i < productData.length; i++) {
+    const product = productData[i];
+    if (product.categoryId === categoryId)
+      products.push(await getProduct(product.productId));
+  }
+  return products;
 };
 
 export const getCategory = async (categoryId) => {
@@ -35,9 +46,12 @@ export const getProduct = async (productId) => {
   );
   product.description =
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
-  product.totalRating = 12;
-  product.reviewCount = 3;
   product.reviews = await getReviewsOfProduct(productId);
+  product.reviewCount = product.reviews.length;
+  product.totalRating = product.reviews.reduce(
+    (accumulator, review) => accumulator + review.rating,
+    0
+  );
   return product;
 };
 

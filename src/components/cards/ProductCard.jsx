@@ -7,11 +7,16 @@ import styles from "./ProductCard.module.css";
 
 export default function ProductCard(props) {
   const {
-    product: { productId, productName, imageUrl, price, discount },
+    product: {
+      productId,
+      productName,
+      imageUrl,
+      price,
+      discount,
+      reviewCount,
+      totalRating,
+    },
   } = props;
-
-  const reviewCount = 3;
-  const totalRating = 13;
 
   const discountedPrice = Math.floor((price * (100 - discount)) / 100);
   const rating = reviewCount === 0 ? 0.0 : totalRating / reviewCount;
