@@ -1,6 +1,8 @@
 .btn-header {
   min-width: 110px;
   width: 100%;
+  text-align: left;
+  padding: 10px;
 }
 
 .btn-header a {

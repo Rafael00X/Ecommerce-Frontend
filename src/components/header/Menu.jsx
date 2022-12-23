@@ -2,8 +2,9 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-import { ReactComponent as CartIcon } from "../../assets/svg/cart-shopping-solid.svg";
 import { actions } from "../../store";
+import { ReactComponent as CartIcon } from "../../assets/svg/cart-shopping-solid.svg";
+import { ReactComponent as TruckIcon } from "../../assets/svg/truck-solid.svg";
 import { ReactComponent as ProfileIcon } from "../../assets/svg/user-solid.svg";
 import WarningModal from "../modals/WarningModal";
 import styles from "./Menu.module.css";
@@ -59,7 +60,7 @@ export default function Profile() {
           className={`btn btn-dark bold ${styles["btn-header"]}`}
           onClick={() => navigate("/orders")}
         >
-          <CartIcon
+          <TruckIcon
             style={{
               width: "20px",
               height: "20px",

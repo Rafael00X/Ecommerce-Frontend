@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import Menu from "./Menu";
 import Logo from "../../assets/img/logo.png";
@@ -33,12 +33,14 @@ export default function Header() {
 }
 
 function Brand() {
+  const navigate = useNavigate();
   return (
-    <p className={`navbar-brand bold ${styles["navbar-brand"]}`}>
-      <Link to="/">
-        <img src={Logo} alt="" />
-        &nbsp; Ecommerce
-      </Link>
+    <p
+      className={`navbar-brand bold ${styles["navbar-brand"]}`}
+      onClick={() => navigate("/")}
+    >
+      <img src={Logo} alt="" />
+      &nbsp; Ecommerce
     </p>
   );
 }
