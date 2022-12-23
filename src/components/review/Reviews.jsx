@@ -8,13 +8,17 @@ export default function Reviews(props) {
   const { product, setProduct } = props;
   const user = useSelector((state) => state.auth.user);
 
-  if (product.reviews.length === 0) return <AddReview />;
+  if (product.reviews.length === 0)
+    return <AddReview setProduct={setProduct} productId={product.productId} />;
+
   const ownReview = product.reviews.find(
     (review) => review.userId === Number(user?.userId)
   );
   const handleDelete = () => {
     deleteReviewOfProduct(ownReview)
-      .then((res) => setProduct(res))
+      .then((res) => {
+        setProduct(res);
+      })
       .catch((err) => alert(err));
   };
 

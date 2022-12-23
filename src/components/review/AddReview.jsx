@@ -21,7 +21,6 @@ export default function AddReview(props) {
     addReviewOfProduct({ ...values, productId })
       .then((res) => setProduct(res))
       .catch((err) => alert(err));
-    alert("Review Added");
   };
 
   const stars = [];

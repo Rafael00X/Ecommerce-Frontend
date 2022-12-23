@@ -137,10 +137,19 @@ const getReviewsOfProduct = async (productId) => {
 };
 
 export const addReviewOfProduct = async (review) => {
-  reviewData.push(review);
+  review.createdAt = "23/12/2022";
+  review.userName = "BingeBuyer101";
+  review.reviewId = 3;
+  review.userId = 1;
+  const product = await getProduct(review.productId);
+  product.reviews.push(review);
+  return { ...product };
 };
 
 export const deleteReviewOfProduct = async (review) => {
-  // TODO
-  return await getProduct(review.productId);
+  const product = await getProduct(review.productId);
+  product.reviews = product.reviews.filter(
+    (rev) => rev.reviewId !== review.reviewId
+  );
+  return { ...product };
 };
