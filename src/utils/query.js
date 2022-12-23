@@ -1,4 +1,4 @@
-import { categoryData, productData, sectionData } from "./database";
+import { categoryData, productData, sectionData, userData } from "./database";
 
 export const getAllSections = async () => {
   sectionData.forEach(async (section) => {
@@ -91,17 +91,24 @@ export const getCart = async () => {
 };
 
 export const loginUser = async (email, password) => {
+  const user = userData.find((u) => u.email === email);
+  if (!user) throw new Error("Email doesn't exist");
+  if (user.password !== password) throw new Error("Invalid credentials!");
+
   return {
     token: "jwt-of-user",
-    user: {
-      userId: "1",
-      userName: "Subhadeep Chakraborty",
-    },
+    user,
   };
 };
 
 export const registerUser = async (data) => {
-  return { token: "jwt-of-user" };
+  return {
+    token: "jwt-of-user",
+    user: {
+      userName: "Guest User",
+      userId: "10",
+    },
+  };
 };
 
 export const placeOrder = async () => {
