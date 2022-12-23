@@ -447,24 +447,3 @@ export const productData = [
     discount: 65,
   },
 ];
-
-export const reviewData = [
-  {
-    reviewId: 1,
-    userId: 1,
-    productId: 1,
-    userName: "BingeBuyer101",
-    text: "Decent Product",
-    rating: 3,
-    createdAt: "12/01/2021",
-  },
-  {
-    reviewId: 2,
-    userId: 2,
-    productId: 1,
-    userName: "Rick",
-    text: "Great Product",
-    rating: 4,
-    createdAt: "07/04/2022",
-  },
-];

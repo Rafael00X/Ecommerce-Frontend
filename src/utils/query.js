@@ -1,4 +1,4 @@
-import { categoryData, productData, reviewData, sectionData } from "./database";
+import { categoryData, productData, sectionData } from "./database";
 
 export const getAllSections = async () => {
   sectionData.forEach(async (section) => {
@@ -129,8 +129,11 @@ export const getOrders = async () => {
 };
 
 const getReviewsOfProduct = async (productId) => {
-  let reviews = [];
-  reviewData.forEach((review) => {
+  const reviewData = JSON.parse(localStorage.getItem("review-data"));
+  if (!reviewData) return [];
+
+  const reviews = [];
+  reviewData.reviews.forEach((review) => {
     if (review.productId === productId) reviews.push(review);
   });
   return reviews;
@@ -139,17 +142,30 @@ const getReviewsOfProduct = async (productId) => {
 export const addReviewOfProduct = async (review) => {
   review.createdAt = "23/12/2022";
   review.userName = "BingeBuyer101";
-  review.reviewId = 3;
   review.userId = 1;
+
+  let reviewData = JSON.parse(localStorage.getItem("review-data"));
+  if (!reviewData)
+    reviewData = {
+      nextId: 1,
+      reviews: [],
+    };
+  reviewData.reviews.push({ ...review, reviewId: reviewData.nextId });
+  reviewData.nextId += 1;
+  localStorage.setItem("review-data", JSON.stringify(reviewData));
+
   const product = await getProduct(review.productId);
-  product.reviews.push(review);
   return { ...product };
 };
 
 export const deleteReviewOfProduct = async (review) => {
+  let reviewData = JSON.parse(localStorage.getItem("review-data"));
+  if (reviewData) {
+    reviewData.reviews = reviewData.reviews.filter(
+      (rev) => rev.reviewId !== review.reviewId
+    );
+    localStorage.setItem("review-data", JSON.stringify(reviewData));
+  }
   const product = await getProduct(review.productId);
-  product.reviews = product.reviews.filter(
-    (rev) => rev.reviewId !== review.reviewId
-  );
   return { ...product };
 };
