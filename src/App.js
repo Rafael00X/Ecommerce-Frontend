@@ -1,5 +1,4 @@
-import { useSelector } from "react-redux";
-import { Navigate, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 
 import Home from "./pages/Home";
 import Category from "./pages/Category";
@@ -9,11 +8,9 @@ import Error from "./pages/Error";
 import Header from "./components/header/Header";
 import Cart from "./pages/Cart";
 import Orders from "./pages/Orders";
-import Register from "./pages/Register";
-import LoginModal from "./components/modals/LoginModal";
+import LoginModal from "./components/modals/FormModal";
 
 export default function App() {
-  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   return (
     <div id="App">
       <LoginModal />
@@ -26,10 +23,6 @@ export default function App() {
           <Route path="/section/:sectionId" element={<Section />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/orders" element={<Orders />} />
-          <Route
-            path="/register"
-            element={isLoggedIn ? <Navigate to="/" /> : <Register />}
-          />
           <Route path="/*" element={<Error />} />
         </Routes>
       </div>

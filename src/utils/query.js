@@ -106,8 +106,16 @@ export const getCart = async (user) => {
 
 export const loginUser = async (email, password) => {
   const user = userData.find((u) => u.email === email);
-  if (!user) throw new Error("Email doesn't exist");
-  if (user.password !== password) throw new Error("Invalid credentials!");
+  if (!user) {
+    const error = new Error("Email doesn't exist");
+    error.props = { email: "Email doesn't exist" };
+    throw error;
+  }
+  if (user.password !== password) {
+    const error = new Error("Invalid credentials");
+    error.props = { email: "Invalid credentials" };
+    throw error;
+  }
 
   return {
     token: "jwt-of-user",

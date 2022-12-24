@@ -2,7 +2,8 @@
   width: 400px;
 }
 
-.card a {
+.highlight {
   color: var(--highlight-color);
+  cursor: pointer;
   text-decoration: underline;
 }
