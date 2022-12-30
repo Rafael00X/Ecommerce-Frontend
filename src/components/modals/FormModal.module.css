@@ -1,9 +1,0 @@
-.card {
-  width: 400px;
-}
-
-.highlight {
-  color: var(--highlight-color);
-  cursor: pointer;
-  text-decoration: underline;
-}

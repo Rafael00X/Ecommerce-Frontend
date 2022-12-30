@@ -53,6 +53,12 @@ img {
   border-radius: 0;
 }
 
+.highlight-link {
+  color: var(--highlight-color);
+  cursor: pointer;
+  text-decoration: underline;
+}
+
 .ovf-ellipse {
   overflow: hidden;
   text-overflow: ellipsis;

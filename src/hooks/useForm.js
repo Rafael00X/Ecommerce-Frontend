@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function useForm(data, callback) {
+export default function useForm(data) {
   const initialValues = {};
   Object.keys(data).forEach((key) => {
     initialValues[key] = data[key].value;
@@ -12,14 +12,6 @@ export default function useForm(data, callback) {
     setValues((prevValues) => {
       return { ...prevValues, [e.target.name]: e.target.value };
     });
-  };
-  const onError = (errors) => {
-    setErrors({ ...errors });
-  };
-  const onSubmit = (e) => {
-    e.preventDefault();
-    setErrors({});
-    callback(values, onError);
   };
 
   const inputs = Object.keys(data).map((key, index) => (
@@ -34,7 +26,7 @@ export default function useForm(data, callback) {
     />
   ));
 
-  return [inputs, onSubmit];
+  return [inputs, values, setErrors];
 }
 
 const Input = (props) => {
