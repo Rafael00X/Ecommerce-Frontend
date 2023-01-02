@@ -29,31 +29,29 @@ export default function ProductPage() {
   }
 
   return (
-    <>
-      <div
-        className="display-container product-page bg-white"
-        style={{ padding: "50px" }}
-      >
-        <div className="row">
-          <div className="col col-12 col-lg-6">
-            <div className={styles.preview}>
-              <img
-                src={product.imageUrl || imagePlaceholder}
-                alt="Product"
-                height="500px"
-                width="80%"
-              />
-            </div>
-            <CartButton productId={product.productId} />
+    <div
+      className="display-container product-page bg-white"
+      style={{ padding: "50px" }}
+    >
+      <div className="row">
+        <div className="col col-12 col-lg-6">
+          <div className={styles.preview}>
+            <img
+              src={product.imageUrl || imagePlaceholder}
+              alt="Product"
+              height="500px"
+              width="80%"
+            />
           </div>
-          <div className="col col-12 col-lg-6">
-            <Details product={product} />
-          </div>
+          <CartButton productId={product.productId} />
         </div>
-        <hr />
-        <Reviews product={product} setProduct={setProduct} />
+        <div className="col col-12 col-lg-6">
+          <Details product={product} />
+        </div>
       </div>
-    </>
+      <hr />
+      <Reviews product={product} setProduct={setProduct} />
+    </div>
   );
 }
 

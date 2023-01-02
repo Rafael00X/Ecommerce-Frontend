@@ -18,11 +18,6 @@ export const getSection = async (sectionId) => {
 };
 
 const getProductsOfCategory = async (categoryId) => {
-  // return productData.filter((product) => product.categoryId === categoryId);
-  // return productData.map(async (product) => {
-  //   if (product.categoryId === categoryId)
-  //     return await getProduct(product.productId);
-  // });
   const products = [];
   for (let i = 0; i < productData.length; i++) {
     const product = productData[i];

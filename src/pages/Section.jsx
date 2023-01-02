@@ -17,18 +17,16 @@ export default function SectionPage() {
   if (!section) return <>Loading...</>;
 
   return (
-    <>
-      <div className="bg-white row">
-        {section.categories.map((category) => (
-          <div
-            key={category.categoryId}
-            className="col col-md-4 col-lg-3"
-            style={{ padding: "10px" }}
-          >
-            <CategoryCard category={category} width="250px" />
-          </div>
-        ))}
-      </div>
-    </>
+    <div className="bg-white row">
+      {section.categories.map((category) => (
+        <div
+          key={category.categoryId}
+          className="col col-md-4 col-lg-3"
+          style={{ padding: "10px" }}
+        >
+          <CategoryCard category={category} width="250px" />
+        </div>
+      ))}
+    </div>
   );
 }
