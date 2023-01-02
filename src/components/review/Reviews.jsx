@@ -12,6 +12,8 @@ export default function Reviews(props) {
 
   const handleAdd = (values) => {
     if (!isLoggedIn) return dispatch(actions.loginModalActions.open());
+    if (values.rating === 0 || values.text === "")
+      return alert("Empty fields not allowed!");
     addReviewOfProduct({ ...values, productId: product.productId }, user)
       .then((response) => setProduct(response))
       .catch((error) => alert(error));
