@@ -1,4 +1,4 @@
-import { categoryData, productData, sectionData, userData } from "./database";
+import { productData, userData } from "./database";
 import { PRODUCT_API_URL, USER_API_URL } from "../config";
 
 export const getAllSections = async () => {
@@ -19,11 +19,37 @@ export const getCategory = async (categoryId) => {
   return data;
 };
 
-// TODO - Reviews
 export const getProduct = async (productId) => {
   const response = await fetch(`${PRODUCT_API_URL}/products/${productId}`);
   const data = await response.json();
-  data.reviews = [];
+  return data;
+};
+
+export const addReviewOfProduct = async (review, product, user) => {
+  review.product = { productId: product.productId };
+  review.userName = user.userName;
+  review.userId = user.userId;
+
+  const response = await fetch(`${PRODUCT_API_URL}/reviews`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(review),
+  });
+  const data = await response.json();
+  return data;
+};
+
+export const deleteReviewOfProduct = async (review, product, user) => {
+  review.product = { productId: product.productId };
+  review.userName = user.userName;
+  review.userId = user.userId;
+
+  const response = await fetch(`${PRODUCT_API_URL}/reviews`, {
+    method: "DELETE",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(review),
+  });
+  const data = await response.json();
   return data;
 };
 
@@ -131,46 +157,4 @@ export const getOrders = async (user) => {
     );
     return { ...order, ...product };
   });
-};
-
-const getReviewsOfProduct = async (productId) => {
-  const reviewData = JSON.parse(localStorage.getItem("review-data"));
-  if (!reviewData) return [];
-
-  const reviews = [];
-  reviewData.reviews.forEach((review) => {
-    if (review.productId === productId) reviews.push(review);
-  });
-  return reviews;
-};
-
-export const addReviewOfProduct = async (review, user) => {
-  review.createdAt = "23/12/2022";
-  review.userName = user.userName;
-  review.userId = user.userId;
-
-  let reviewData = JSON.parse(localStorage.getItem("review-data"));
-  if (!reviewData)
-    reviewData = {
-      nextId: 1,
-      reviews: [],
-    };
-  reviewData.reviews.push({ ...review, reviewId: reviewData.nextId });
-  reviewData.nextId += 1;
-  localStorage.setItem("review-data", JSON.stringify(reviewData));
-
-  const product = await getProduct(review.productId);
-  return { ...product };
-};
-
-export const deleteReviewOfProduct = async (review, user) => {
-  let reviewData = JSON.parse(localStorage.getItem("review-data"));
-  if (reviewData) {
-    reviewData.reviews = reviewData.reviews.filter(
-      (rev) => rev.reviewId !== review.reviewId
-    );
-    localStorage.setItem("review-data", JSON.stringify(reviewData));
-  }
-  const product = await getProduct(review.productId);
-  return { ...product };
 };

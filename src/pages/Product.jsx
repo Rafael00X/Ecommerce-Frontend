@@ -28,8 +28,6 @@ export default function ProductPage() {
     return <h3>Loading...</h3>;
   }
 
-  console.log(product);
-
   return (
     <div
       className="display-container product-page bg-white"

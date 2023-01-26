@@ -14,7 +14,7 @@ export default function Reviews(props) {
     if (!isLoggedIn) return dispatch(actions.loginModalActions.open());
     if (values.rating === 0 || values.text === "")
       return alert("Empty fields not allowed!");
-    addReviewOfProduct({ ...values, productId: product.productId }, user)
+    addReviewOfProduct(values, product, user)
       .then((response) => setProduct(response))
       .catch((error) => alert(error));
   };
@@ -23,7 +23,7 @@ export default function Reviews(props) {
     (review) => review.userId === Number(user?.userId)
   );
   const handleDelete = () => {
-    deleteReviewOfProduct(ownReview, user)
+    deleteReviewOfProduct(ownReview, product, user)
       .then((response) => setProduct(response))
       .catch((error) => alert(error));
   };
