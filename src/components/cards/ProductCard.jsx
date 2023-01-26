@@ -11,14 +11,16 @@ export default function ProductCard(props) {
       productId,
       productName,
       imageUrl,
-      price,
-      discount,
+      markedPrice,
+      sellingPrice,
       reviewCount,
       totalRating,
     },
   } = props;
 
-  const discountedPrice = Math.floor((price * (100 - discount)) / 100);
+  const discount = Math.floor(
+    ((markedPrice - sellingPrice) * 100.0) / markedPrice
+  );
   const rating = reviewCount === 0 ? 0.0 : totalRating / reviewCount;
 
   return (
@@ -46,17 +48,17 @@ export default function ProductCard(props) {
           {discount === 0 ? (
             <div className={styles.price}>
               <span className={styles.main}>
-                &#8377;{price.toLocaleString()}
+                &#8377;{markedPrice.toLocaleString()}
               </span>
             </div>
           ) : (
             <div className={styles.price}>
               <span className={styles.main}>
-                &#8377;{discountedPrice.toLocaleString()}
+                &#8377;{sellingPrice.toLocaleString()}
               </span>
               <span className={styles.original}>
                 {" "}
-                &#8377;{price.toLocaleString()}
+                &#8377;{markedPrice.toLocaleString()}
               </span>
               <span className={styles.discount}>{discount}% off</span>
             </div>

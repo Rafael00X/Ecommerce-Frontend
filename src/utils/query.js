@@ -1,53 +1,30 @@
 import { categoryData, productData, sectionData, userData } from "./database";
+import { PRODUCT_API_URL, USER_API_URL } from "../config";
 
 export const getAllSections = async () => {
-  sectionData.forEach(async (section) => {
-    section["categories"] = await getCategoriesOfSection(section.sectionId);
-  });
-  return sectionData;
-};
-
-const getCategoriesOfSection = async (sectionId) => {
-  return categoryData.filter((category) => category.sectionId === sectionId);
+  const response = await fetch(`${PRODUCT_API_URL}/sections`);
+  const data = await response.json();
+  return data;
 };
 
 export const getSection = async (sectionId) => {
-  const section = sectionData.find((sec) => sec.sectionId === sectionId);
-  section["categories"] = await getCategoriesOfSection(sectionId);
-  return section;
-};
-
-const getProductsOfCategory = async (categoryId) => {
-  const products = [];
-  for (let i = 0; i < productData.length; i++) {
-    const product = productData[i];
-    if (product.categoryId === categoryId)
-      products.push(await getProduct(product.productId));
-  }
-  return products;
+  const response = await fetch(`${PRODUCT_API_URL}/sections/${sectionId}`);
+  const data = await response.json();
+  return data;
 };
 
 export const getCategory = async (categoryId) => {
-  const category = categoryData.find(
-    (categ) => categ.categoryId === categoryId
-  );
-  category["products"] = await getProductsOfCategory(categoryId);
-  return category;
+  const response = await fetch(`${PRODUCT_API_URL}/categories/${categoryId}`);
+  const data = await response.json();
+  return data;
 };
 
+// TODO - Reviews
 export const getProduct = async (productId) => {
-  const product = productData.find(
-    (product) => product.productId === productId
-  );
-  product.description =
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
-  product.reviews = await getReviewsOfProduct(productId);
-  product.reviewCount = product.reviews.length;
-  product.totalRating = product.reviews.reduce(
-    (accumulator, review) => accumulator + review.rating,
-    0
-  );
-  return product;
+  const response = await fetch(`${PRODUCT_API_URL}/products/${productId}`);
+  const data = await response.json();
+  data.reviews = [];
+  return data;
 };
 
 export const addProductToCart = async (productId, user) => {
