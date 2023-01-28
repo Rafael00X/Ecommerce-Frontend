@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import ProductCard from "../components/cards/ProductCard";
-import { getCategory } from "../utils/query";
+import { getCategory } from "../fetch/index";
 
 export default function Category() {
   const [category, setCategory] = useState(null);

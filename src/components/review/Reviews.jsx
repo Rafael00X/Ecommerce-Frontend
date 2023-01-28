@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 
 import { actions } from "../../store/index";
-import { addReviewOfProduct, deleteReviewOfProduct } from "../../utils/query";
+import { addReviewOfProduct, deleteReviewOfProduct } from "../../fetch/index";
 import AddReview from "./AddReview";
 import ReviewCard from "./ReviewCard";
 

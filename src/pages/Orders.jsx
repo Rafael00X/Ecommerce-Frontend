@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 import MessageCard from "../components/cards/MessageCard";
-import { getOrders } from "../utils/query";
+import { getOrders } from "../fetch/index";
 import styles from "./Orders.module.css";
 
 export default function Orders() {

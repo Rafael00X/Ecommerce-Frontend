@@ -6,7 +6,7 @@ import {
   placeOrder,
   removeProductFromCart,
   updateProductInCart,
-} from "../utils/query";
+} from "../fetch/index";
 import CartProductCard from "../components/cards/CartProductCard";
 import styles from "./Cart.module.css";
 import MessageCard from "../components/cards/MessageCard";

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import CategoryCard from "../components/cards/CategoryCard";
-import { getSection } from "../utils/query.js";
+import { getSection } from "../fetch/index";
 
 export default function SectionPage() {
   const [section, setSection] = useState(null);

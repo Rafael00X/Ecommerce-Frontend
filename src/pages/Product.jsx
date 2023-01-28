@@ -9,7 +9,7 @@ import {
   getProduct,
   addProductToCart,
   getProductFromCart,
-} from "../utils/query.js";
+} from "../fetch/index";
 import imagePlaceholder from "../assets/img/image-placeholder.jpg";
 import styles from "./Product.module.css";
 import Reviews from "../components/review/Reviews";

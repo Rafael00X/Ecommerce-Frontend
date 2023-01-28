@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { registerUser } from "../../utils/query";
+import { registerUser } from "../../fetch/index";
 import { actions } from "../../store";
 import Input from "./Input";
 
