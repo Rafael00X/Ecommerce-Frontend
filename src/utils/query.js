@@ -110,14 +110,22 @@ export const loginUser = async ({ email, password }) => {
   });
 
   const data = await response.json();
-  if (!data) {
-    const error = new Error("Invalid credentials!");
-    error.props = {
-      email: "Invalid credentials!",
-      password: "Invalid credentials!",
-    };
+
+  if (!response.ok) {
+    const error = new Error("Failed to login");
+    if (data.message === "Email not registered") {
+      error.props = {
+        email: "Email not registered",
+      };
+    } else if (data.message === "Invalid credentials") {
+      error.props = {
+        email: "Invalid credentials",
+        password: "Invalid credentials",
+      };
+    }
     throw error;
   }
+
   return {
     token: data.token,
     user: {
@@ -135,11 +143,14 @@ export const registerUser = async ({ username, email, password }) => {
   });
 
   const data = await response.json();
-  if (!data) {
-    const error = new Error("Email registered!");
-    error.props = {
-      email: "Email already registered!",
-    };
+
+  if (!response.ok) {
+    const error = new Error("Email registered");
+    if (data.message === "Email already registered") {
+      error.props = {
+        email: "Email already registered",
+      };
+    }
     throw error;
   }
   return {
@@ -149,13 +160,6 @@ export const registerUser = async ({ username, email, password }) => {
       userName: data.userName,
     },
   };
-  // return {
-  //   token: "jwt-of-user",
-  //   user: {
-  //     userName: "Guest User",
-  //     userId: "10",
-  //   },
-  // };
 };
 
 export const placeOrder = async (user) => {
