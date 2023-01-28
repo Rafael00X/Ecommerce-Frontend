@@ -22,7 +22,7 @@ export default function LoginForm(props) {
   };
   const onSubmit = (e) => {
     e.preventDefault();
-    loginUser(values.email, values.password)
+    loginUser(values)
       .then((res) => {
         dispatch(actions.authActions.login(res));
         onClose();

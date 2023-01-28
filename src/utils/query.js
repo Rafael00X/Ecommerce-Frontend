@@ -102,14 +102,15 @@ export const getCart = async (user) => {
   return products;
 };
 
-export const loginUser = async (email, password) => {
-  const user = userData.find((u) => u.email === email);
-  if (!user) {
-    const error = new Error("Email doesn't exist!");
-    error.props = { email: "Email doesn't exist!" };
-    throw error;
-  }
-  if (user.password !== password) {
+export const loginUser = async ({ email, password }) => {
+  const response = await fetch(`${USER_API_URL}/login`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email, password }),
+  });
+
+  const data = await response.json();
+  if (!data) {
     const error = new Error("Invalid credentials!");
     error.props = {
       email: "Invalid credentials!",
@@ -117,21 +118,44 @@ export const loginUser = async (email, password) => {
     };
     throw error;
   }
-
   return {
-    token: "jwt-of-user",
-    user,
+    token: data.token,
+    user: {
+      userId: data.userId,
+      userName: data.userName,
+    },
   };
 };
 
-export const registerUser = async (data) => {
+export const registerUser = async ({ username, email, password }) => {
+  const response = await fetch(`${USER_API_URL}/register`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email, password, userName: username }),
+  });
+
+  const data = await response.json();
+  if (!data) {
+    const error = new Error("Email registered!");
+    error.props = {
+      email: "Email already registered!",
+    };
+    throw error;
+  }
   return {
-    token: "jwt-of-user",
+    token: data.token,
     user: {
-      userName: "Guest User",
-      userId: "10",
+      userId: data.userId,
+      userName: data.userName,
     },
   };
+  // return {
+  //   token: "jwt-of-user",
+  //   user: {
+  //     userName: "Guest User",
+  //     userId: "10",
+  //   },
+  // };
 };
 
 export const placeOrder = async (user) => {
