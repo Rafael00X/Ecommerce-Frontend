@@ -1,19 +1,22 @@
 import { USER_API_URL } from "../config";
 
-async function getProduct() {
-  return {};
-}
-
 export const getCart = async (user) => {
-  const cart = JSON.parse(localStorage.getItem("cart"));
-  if (!cart) return [];
-  const products = [];
-  for (let i = 0; i < cart.products.length; i++) {
-    const product = await getProduct(cart.products[i].productId);
-    product.quantity = cart.products[i].quantity;
-    products.push(product);
-  }
-  return products;
+  const response = await fetch(`${USER_API_URL}/cart`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(user),
+  });
+
+  const data = await response.json();
+  console.log(data);
+  // if (response.ok)
+  const products = data.cartItems.map((cartItem) => {
+    const product = cartItem.product;
+    product.quantity = cartItem.quantity;
+    return product;
+  });
+  const cart = { ...data, cartItems: products };
+  return cart;
 };
 
 export const getProductFromCart = async (productId, user) => {
@@ -23,13 +26,23 @@ export const getProductFromCart = async (productId, user) => {
 };
 
 export const addProductToCart = async (productId, user) => {
-  let cart = JSON.parse(localStorage.getItem("cart"));
-  if (!cart) cart = { products: [] };
-  if (cart.products.find((product) => product.productId === productId))
-    return false;
-  cart.products.push({ productId, quantity: 1 });
-  localStorage.setItem("cart", JSON.stringify(cart));
+  const response = await fetch(`${USER_API_URL}/cart/add-item`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ user, productId }),
+  });
+
+  const data = await response.json();
+  console.log(data);
+  // if (response.ok)
   return true;
+  // let cart = JSON.parse(localStorage.getItem("cart"));
+  // if (!cart) cart = { products: [] };
+  // if (cart.products.find((product) => product.productId === productId))
+  //   return false;
+  // cart.products.push({ productId, quantity: 1 });
+  // localStorage.setItem("cart", JSON.stringify(cart));
+  // return true;
 };
 
 export const removeProductFromCart = async (productId, user) => {

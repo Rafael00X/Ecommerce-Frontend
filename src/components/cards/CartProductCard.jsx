@@ -5,41 +5,55 @@ import styles from "./CartProductCard.module.css";
 import WarningModal from "../modals/WarningModal";
 
 export default function CartProductCard(props) {
-  const { product, deleteProduct, updateProduct } = props;
+  const {
+    product: {
+      productId,
+      productName,
+      imageUrl,
+      markedPrice,
+      sellingPrice,
+      reviewCount,
+      totalRating,
+      quantity,
+    },
+    product,
+    deleteProduct,
+    updateProduct,
+  } = props;
   const [count, setCount] = useState(product.quantity);
 
-  const discountedPrice = Math.floor(
-    (product.price * (100 - product.discount)) / 100
+  const discount = Math.floor(
+    ((markedPrice - sellingPrice) * 100.0) / markedPrice
   );
 
   return (
     <div className={styles.card}>
       <div>
         <img
-          src={product.imageUrl || imagePlaceholder}
+          src={imageUrl || imagePlaceholder}
           alt="product"
           height="150px"
           width="100px"
         />
       </div>
       <div className={styles.details}>
-        <h5 className="ovf-ellipse">{product.productName}</h5>
-        {product.discount === 0 ? (
+        <h5 className="ovf-ellipse">{productName}</h5>
+        {discount === 0 ? (
           <div className={styles.price}>
             <span className={styles.main}>
-              &#8377;{(product.price * count).toLocaleString()}
+              &#8377;{(sellingPrice * count).toLocaleString()}
             </span>
           </div>
         ) : (
           <div className={styles.price}>
             <span className={styles.main}>
-              &#8377;{(discountedPrice * count).toLocaleString()}
+              &#8377;{(sellingPrice * count).toLocaleString()}
             </span>
             <span className={styles.original}>
               {" "}
-              &#8377;{(product.price * count).toLocaleString()}
+              &#8377;{(markedPrice * count).toLocaleString()}
             </span>
-            <span className={styles.discount}>{product.discount}% off</span>
+            <span className={styles.discount}>{discount}% off</span>
           </div>
         )}
       </div>

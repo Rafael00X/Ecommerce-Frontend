@@ -11,8 +11,10 @@ import CartProductCard from "../components/cards/CartProductCard";
 import styles from "./Cart.module.css";
 import MessageCard from "../components/cards/MessageCard";
 
+// TODO - Change products to cart
 export default function CartPage() {
   const [products, setProducts] = useState([]);
+  const [cart, setCart] = useState(null);
   const { isLoggedIn, user } = useSelector((state) => state.auth);
 
   const deleteProduct = (product) => {
@@ -29,8 +31,10 @@ export default function CartPage() {
   useEffect(() => {
     if (isLoggedIn) {
       getCart(user)
-        .then((products) => {
-          setProducts(products);
+        .then((cart) => {
+          setProducts(cart.cartItems);
+          setCart(cart);
+          console.log(cart);
         })
         .catch((error) => console.log(error));
     } else {
@@ -42,13 +46,7 @@ export default function CartPage() {
   if (!products || products.length === 0)
     return <MessageCard message="Cart Is Empty" />;
 
-  let total = 0;
-  products.forEach((product) => {
-    const discountedPrice = Math.floor(
-      (product.price * (100 - product.discount)) / 100
-    );
-    total += discountedPrice * product.quantity;
-  });
+  const total = cart.totalAmount;
 
   return (
     <div className="bg-white">
