@@ -18,7 +18,7 @@ export default function CartPage() {
   const { isLoggedIn, user } = useSelector((state) => state.auth);
 
   const deleteProduct = (product) => {
-    removeProductFromCart(product.productId, user)
+    removeProductFromCart(product.cartItemId, user)
       .then((res) => setProducts(res))
       .catch((err) => alert(err));
   };
