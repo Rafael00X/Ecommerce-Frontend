@@ -19,7 +19,6 @@ export const getCart = async (user) => {
   });
 
   const data = await response.json();
-  console.log(data);
   // if (response.ok)
   return destructureCart(data);
 };
@@ -54,17 +53,28 @@ export const removeProductFromCart = async (cartItemId, user) => {
     }),
   });
   const data = await response.json();
-  console.log(data);
   return destructureCart(data);
 };
 
-export const updateProductInCart = async (productId, quantity, user) => {
-  let cart = JSON.parse(localStorage.getItem("cart"));
-  if (!cart) localStorage.setItem("cart", JSON.stringify({ products: [] }));
-  const product = cart.products.find(
-    (product) => product.productId === productId
-  );
-  product.quantity = quantity;
-  localStorage.setItem("cart", JSON.stringify(cart));
-  return await getCart();
+export const updateProductInCart = async (cartItemId, quantity, user) => {
+  const response = await fetch(`${USER_API_URL}/cart/update-item`, {
+    method: "PATCH",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      user,
+      cartItemId,
+      quantity,
+    }),
+  });
+  const data = await response.json();
+  console.log(data);
+  return destructureCart(data);
+  // let cart = JSON.parse(localStorage.getItem("cart"));
+  // if (!cart) localStorage.setItem("cart", JSON.stringify({ products: [] }));
+  // const product = cart.products.find(
+  //   (product) => product.productId === productId
+  // );
+  // product.quantity = quantity;
+  // localStorage.setItem("cart", JSON.stringify(cart));
+  // return await getCart();
 };

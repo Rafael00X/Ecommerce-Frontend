@@ -24,8 +24,8 @@ export default function CartPage() {
       .catch((err) => alert(err));
   };
   const updateProduct = (product) => {
-    updateProductInCart(product.productId, product.quantity, user)
-      .then((res) => setProducts(res))
+    updateProductInCart(product.cartItemId, product.quantity, user)
+      .then((res) => setCart(res))
       .catch((err) => alert(err));
   };
 
