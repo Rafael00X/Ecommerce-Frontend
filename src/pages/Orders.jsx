@@ -8,11 +8,11 @@ import styles from "./Orders.module.css";
 
 export default function Orders() {
   const [orders, setOrders] = useState([]);
-  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+  const { isLoggedIn, user } = useSelector((state) => state.auth);
 
   useEffect(() => {
     if (isLoggedIn) {
-      getOrders()
+      getOrders(user)
         .then((res) => setOrders(res))
         .catch((err) => alert(err));
     } else {
@@ -52,9 +52,9 @@ export default function Orders() {
                   {order.productName}
                 </div>
               </td>
-              <td>{order.date}</td>
+              <td>{order.orderDate.substr(0, 10)}</td>
               <td>{order.quantity}</td>
-              <td>{(order.price * order.quantity).toLocaleString()}</td>
+              <td>{order.totalPrice.toLocaleString()}</td>
             </tr>
           ))}
         </tbody>
