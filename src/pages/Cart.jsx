@@ -11,7 +11,6 @@ import CartProductCard from "../components/cards/CartProductCard";
 import styles from "./Cart.module.css";
 import MessageCard from "../components/cards/MessageCard";
 
-// TODO - Change products to cart
 export default function CartPage() {
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState(null);
@@ -42,9 +41,8 @@ export default function CartPage() {
   }, [isLoggedIn, user]);
 
   if (!isLoggedIn) return <MessageCard message="Not Logged In" />;
-  if (!cart) return <MessageCard message="Cart Is Empty" />;
-  // if (!products || products.length === 0)
-  //   return <MessageCard message="Cart Is Empty" />;
+  if (!cart || cart.cartItems.length == 0)
+    return <MessageCard message="Cart Is Empty" />;
 
   const total = cart.totalAmount;
 
@@ -60,18 +58,20 @@ export default function CartPage() {
           />
         );
       })}
-      <Payment total={total} user={user} setProducts={setProducts} />
+      <Payment total={total} user={user} setCart={setCart} />
     </div>
   );
 }
 
 function Payment(props) {
-  const { total, user, setProducts } = props;
+  const { total, user, setCart } = props;
   const handlePay = () => {
     placeOrder(user)
       .then(() => {
         alert("Order Placed!");
-        setProducts([]);
+        setCart((prev) => {
+          return { ...prev, cartItems: [] };
+        });
       })
       .catch((err) => alert(err));
   };

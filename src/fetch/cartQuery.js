@@ -4,7 +4,7 @@ const destructureCart = (cartData) => {
   const products = cartData.cartItems.map((cartItem) => {
     const product = cartItem.product;
     product.quantity = cartItem.quantity;
-    product.cartItemId = cartItem.id;
+    product.cartItemId = cartItem.cartItemId;
     return product;
   });
   const cart = { ...cartData, cartItems: products };
