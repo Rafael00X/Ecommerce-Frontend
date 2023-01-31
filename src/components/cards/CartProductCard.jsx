@@ -6,21 +6,12 @@ import WarningModal from "../modals/WarningModal";
 
 export default function CartProductCard(props) {
   const {
-    product: {
-      productId,
-      productName,
-      imageUrl,
-      markedPrice,
-      sellingPrice,
-      reviewCount,
-      totalRating,
-      quantity,
-    },
+    product: { productName, imageUrl, markedPrice, sellingPrice, quantity },
     product,
     deleteProduct,
     updateProduct,
   } = props;
-  const [count, setCount] = useState(product.quantity);
+  const [count, setCount] = useState(quantity);
 
   const discount = Math.floor(
     ((markedPrice - sellingPrice) * 100.0) / markedPrice

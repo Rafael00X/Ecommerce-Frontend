@@ -1,5 +1,16 @@
 import { USER_API_URL } from "../config";
 
+const destructureCart = (cartData) => {
+  const products = cartData.cartItems.map((cartItem) => {
+    const product = cartItem.product;
+    product.quantity = cartItem.quantity;
+    product.cartItemId = cartItem.id;
+    return product;
+  });
+  const cart = { ...cartData, cartItems: products };
+  return cart;
+};
+
 export const getCart = async (user) => {
   const response = await fetch(`${USER_API_URL}/cart`, {
     method: "POST",
@@ -10,14 +21,7 @@ export const getCart = async (user) => {
   const data = await response.json();
   console.log(data);
   // if (response.ok)
-  const products = data.cartItems.map((cartItem) => {
-    const product = cartItem.product;
-    product.quantity = cartItem.quantity;
-    product.cartItemId = cartItem.id;
-    return product;
-  });
-  const cart = { ...data, cartItems: products };
-  return cart;
+  return destructureCart(data);
 };
 
 export const getProductFromCart = async (productId, user) => {
@@ -51,14 +55,7 @@ export const removeProductFromCart = async (cartItemId, user) => {
   });
   const data = await response.json();
   console.log(data);
-  return data;
-  // let cart = JSON.parse(localStorage.getItem("cart"));
-  // if (!cart) cart = { products: [] };
-  // cart.products = cart.products.filter(
-  //   (product) => product.productId !== productId
-  // );
-  // localStorage.setItem("cart", JSON.stringify(cart));
-  // return await getCart();
+  return destructureCart(data);
 };
 
 export const updateProductInCart = async (productId, quantity, user) => {

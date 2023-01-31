@@ -16,10 +16,11 @@ export default function CartPage() {
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState(null);
   const { isLoggedIn, user } = useSelector((state) => state.auth);
+  console.log(cart);
 
   const deleteProduct = (product) => {
     removeProductFromCart(product.cartItemId, user)
-      .then((res) => setProducts(res))
+      .then((res) => setCart(res))
       .catch((err) => alert(err));
   };
   const updateProduct = (product) => {
@@ -32,28 +33,27 @@ export default function CartPage() {
     if (isLoggedIn) {
       getCart(user)
         .then((cart) => {
-          setProducts(cart.cartItems);
           setCart(cart);
-          console.log(cart);
         })
         .catch((error) => console.log(error));
     } else {
-      setProducts([]);
+      setCart(null);
     }
   }, [isLoggedIn, user]);
 
   if (!isLoggedIn) return <MessageCard message="Not Logged In" />;
-  if (!products || products.length === 0)
-    return <MessageCard message="Cart Is Empty" />;
+  if (!cart) return <MessageCard message="Cart Is Empty" />;
+  // if (!products || products.length === 0)
+  //   return <MessageCard message="Cart Is Empty" />;
 
   const total = cart.totalAmount;
 
   return (
     <div className="bg-white">
-      {products.map((product) => {
+      {cart.cartItems.map((product) => {
         return (
           <CartProductCard
-            key={product.productId}
+            key={product.cartItemId}
             product={product}
             deleteProduct={deleteProduct}
             updateProduct={updateProduct}
