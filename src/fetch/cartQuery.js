@@ -24,9 +24,17 @@ export const getCart = async (user) => {
 };
 
 export const getProductFromCart = async (productId, user) => {
-  const cart = JSON.parse(localStorage.getItem("cart"));
-  if (!cart) return false;
-  return cart.products.find((product) => product.productId === productId);
+  const response = await fetch(`${USER_API_URL}/cart/get-item`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      user,
+      productId,
+    }),
+  });
+
+  const data = await response.json();
+  return data;
 };
 
 export const addProductToCart = async (productId, user) => {
