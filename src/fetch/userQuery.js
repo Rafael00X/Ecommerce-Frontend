@@ -29,6 +29,7 @@ export const loginUser = async ({ email, password }) => {
     user: {
       userId: data.userId,
       userName: data.userName,
+      token: data.token,
     },
   };
 };
@@ -56,6 +57,7 @@ export const registerUser = async ({ username, email, password }) => {
     user: {
       userId: data.userId,
       userName: data.userName,
+      token: data.token,
     },
   };
 };
