@@ -28,7 +28,10 @@ export default function LoginForm(props) {
         onClose();
       })
       .catch((error) => {
-        console.log(error);
+        if (!error.props) {
+          alert("Cannot connect to server");
+          onClose();
+        }
         setErrors(error.props);
       });
   };
