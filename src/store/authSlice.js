@@ -1,12 +1,11 @@
 const { createSlice } = require("@reduxjs/toolkit");
 
-const AUTH_KEY_NAME = "auth-ecommerce";
-const auth = JSON.parse(localStorage.getItem(AUTH_KEY_NAME));
+export const USER_JWT_TOKEN = "user-jwt-token";
 
 const initialState = {
-  isLoggedIn: !!auth?.token,
-  token: auth?.token,
-  user: auth?.user,
+  isLoggedIn: false,
+  token: null,
+  user: null,
 };
 
 const authSlice = createSlice({
@@ -17,13 +16,16 @@ const authSlice = createSlice({
       state.isLoggedIn = true;
       state.token = action.payload.token;
       state.user = action.payload.user;
-      localStorage.setItem(AUTH_KEY_NAME, JSON.stringify(action.payload));
+      localStorage.setItem(
+        USER_JWT_TOKEN,
+        JSON.stringify(action.payload.token)
+      );
     },
     logout: (state) => {
       state.isLoggedIn = false;
-      state.token = undefined;
-      state.user = undefined;
-      localStorage.removeItem(AUTH_KEY_NAME);
+      state.token = null;
+      state.user = null;
+      localStorage.removeItem(USER_JWT_TOKEN);
     },
   },
 });

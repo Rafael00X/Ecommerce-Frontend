@@ -61,3 +61,25 @@ export const registerUser = async ({ username, email, password }) => {
     },
   };
 };
+
+export const validateUser = async (token) => {
+  const response = await fetch(`${USER_API_URL}/validate`, {
+    method: "GET",
+    headers: { "Content-Type": "application/json", Authorization: token },
+  });
+
+  const data = await response.json();
+
+  if (!response.ok) {
+    const error = new Error("Invalid token");
+    throw error;
+  }
+  return {
+    token: data.token,
+    user: {
+      userId: data.userId,
+      userName: data.userName,
+      token: data.token,
+    },
+  };
+};
