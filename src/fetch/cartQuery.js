@@ -1,4 +1,4 @@
-import { USER_API_URL } from "../config";
+import { BACKEND_TWO_API_URL } from "../config";
 
 const destructureCart = (cartData) => {
   const products = cartData.cartItems.map((cartItem) => {
@@ -12,7 +12,7 @@ const destructureCart = (cartData) => {
 };
 
 export const getCart = async (user) => {
-  const response = await fetch(`${USER_API_URL}/cart`, {
+  const response = await fetch(`${BACKEND_TWO_API_URL}/cart`, {
     method: "GET",
     headers: { "Content-Type": "application/json", Authorization: user.token },
   });
@@ -21,7 +21,7 @@ export const getCart = async (user) => {
 };
 
 export const getProductFromCart = async (productId, user) => {
-  const response = await fetch(`${USER_API_URL}/cart/get-item`, {
+  const response = await fetch(`${BACKEND_TWO_API_URL}/cart/get-item`, {
     method: "POST",
     headers: { "Content-Type": "application/json", Authorization: user.token },
     body: JSON.stringify(productId),
@@ -32,7 +32,7 @@ export const getProductFromCart = async (productId, user) => {
 };
 
 export const addProductToCart = async (productId, user) => {
-  const response = await fetch(`${USER_API_URL}/cart/add-item`, {
+  const response = await fetch(`${BACKEND_TWO_API_URL}/cart/add-item`, {
     method: "POST",
     headers: { "Content-Type": "application/json", Authorization: user.token },
     body: JSON.stringify(productId),
@@ -42,7 +42,7 @@ export const addProductToCart = async (productId, user) => {
 };
 
 export const removeProductFromCart = async (cartItemId, user) => {
-  const response = await fetch(`${USER_API_URL}/cart/remove-item`, {
+  const response = await fetch(`${BACKEND_TWO_API_URL}/cart/remove-item`, {
     method: "DELETE",
     headers: { "Content-Type": "application/json", Authorization: user.token },
     body: JSON.stringify(cartItemId),
@@ -52,7 +52,7 @@ export const removeProductFromCart = async (cartItemId, user) => {
 };
 
 export const updateProductInCart = async (cartItemId, quantity, user) => {
-  const response = await fetch(`${USER_API_URL}/cart/update-item`, {
+  const response = await fetch(`${BACKEND_TWO_API_URL}/cart/update-item`, {
     method: "PATCH",
     headers: { "Content-Type": "application/json", Authorization: user.token },
     body: JSON.stringify({

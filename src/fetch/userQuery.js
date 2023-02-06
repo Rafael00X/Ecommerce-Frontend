@@ -1,7 +1,7 @@
-import { USER_API_URL } from "../config";
+import { BACKEND_TWO_API_URL } from "../config";
 
 export const loginUser = async ({ email, password }) => {
-  const response = await fetch(`${USER_API_URL}/login`, {
+  const response = await fetch(`${BACKEND_TWO_API_URL}/login`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ email, password }),
@@ -35,7 +35,7 @@ export const loginUser = async ({ email, password }) => {
 };
 
 export const registerUser = async ({ username, email, password }) => {
-  const response = await fetch(`${USER_API_URL}/register`, {
+  const response = await fetch(`${BACKEND_TWO_API_URL}/register`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ email, password, userName: username }),
@@ -63,7 +63,7 @@ export const registerUser = async ({ username, email, password }) => {
 };
 
 export const validateUser = async (token) => {
-  const response = await fetch(`${USER_API_URL}/validate`, {
+  const response = await fetch(`${BACKEND_TWO_API_URL}/validate`, {
     method: "GET",
     headers: { "Content-Type": "application/json", Authorization: token },
   });

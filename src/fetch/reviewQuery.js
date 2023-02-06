@@ -1,11 +1,11 @@
-import { PRODUCT_API_URL } from "../config";
+import { BACKEND_ONE_API_URL } from "../config";
 
 export const addReviewOfProduct = async (review, product, user) => {
   review.product = { productId: product.productId };
   review.userName = user.userName;
   review.userId = user.userId;
 
-  const response = await fetch(`${PRODUCT_API_URL}/reviews`, {
+  const response = await fetch(`${BACKEND_ONE_API_URL}/reviews`, {
     method: "POST",
     headers: { "Content-Type": "application/json", Authorization: user.token },
     body: JSON.stringify(review),
@@ -19,7 +19,7 @@ export const deleteReviewOfProduct = async (review, product, user) => {
   review.userName = user.userName;
   review.userId = user.userId;
 
-  const response = await fetch(`${PRODUCT_API_URL}/reviews`, {
+  const response = await fetch(`${BACKEND_ONE_API_URL}/reviews`, {
     method: "DELETE",
     headers: { "Content-Type": "application/json", Authorization: user.token },
     body: JSON.stringify(review),

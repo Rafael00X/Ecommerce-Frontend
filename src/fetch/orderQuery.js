@@ -1,7 +1,7 @@
-import { USER_API_URL } from "../config";
+import { BACKEND_TWO_API_URL } from "../config";
 
 export const placeOrder = async (user) => {
-  const response = await fetch(`${USER_API_URL}/orders/add-orders`, {
+  const response = await fetch(`${BACKEND_TWO_API_URL}/orders/add-orders`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -13,7 +13,7 @@ export const placeOrder = async (user) => {
 };
 
 export const getOrders = async (user) => {
-  const response = await fetch(`${USER_API_URL}/orders`, {
+  const response = await fetch(`${BACKEND_TWO_API_URL}/orders`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
