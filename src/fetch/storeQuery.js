@@ -23,31 +23,3 @@ export const getProduct = async (productId) => {
   const data = await response.json();
   return data;
 };
-
-export const addReviewOfProduct = async (review, product, user) => {
-  review.product = { productId: product.productId };
-  review.userName = user.userName;
-  review.userId = user.userId;
-
-  const response = await fetch(`${PRODUCT_API_URL}/reviews`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(review),
-  });
-  const data = await response.json();
-  return data;
-};
-
-export const deleteReviewOfProduct = async (review, product, user) => {
-  review.product = { productId: product.productId };
-  review.userName = user.userName;
-  review.userId = user.userId;
-
-  const response = await fetch(`${PRODUCT_API_URL}/reviews`, {
-    method: "DELETE",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(review),
-  });
-  const data = await response.json();
-  return data;
-};
