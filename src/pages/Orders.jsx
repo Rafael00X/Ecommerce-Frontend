@@ -74,45 +74,64 @@ function CompactOrders(props) {
     <div className={styles.container + " bg-white"}>
       {orders.map((order) => {
         return (
-          <div style={{ borderBottom: "1px solid", padding: "30px 20px" }}>
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-              }}
-            >
-              <Link to={`/product/${order.productId}`}>
-                <img
-                  src={order.imageUrl}
-                  alt="product"
-                  width="100px"
-                  height="100px"
-                  className="zoom"
-                />
-              </Link>
-              <p
-                className="ovf-ellipse"
-                style={{ flexGrow: 1, overflow: "hidden", marginLeft: "30px" }}
+          <>
+            <div style={{ padding: "30px 20px" }}>
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                }}
               >
-                {order.productName}
-              </p>
+                <Link to={`/product/${order.productId}`}>
+                  <img
+                    src={order.imageUrl}
+                    alt="product"
+                    width="100px"
+                    height="100px"
+                    className="zoom"
+                  />
+                </Link>
+                <p
+                  className="ovf-ellipse"
+                  style={{
+                    flexGrow: 1,
+                    overflow: "hidden",
+                    marginLeft: "30px",
+                    fontWeight: "bold",
+                  }}
+                >
+                  {order.productName}
+                </p>
+              </div>
+              <div
+                style={{
+                  marginTop: "30px",
+                  padding: "20px",
+                  border: "1px solid #ccc",
+                }}
+              >
+                <div
+                  style={{ display: "flex", justifyContent: "space-between" }}
+                >
+                  <p>Ordered on : </p>
+                  <p>{order.orderDate.substr(0, 10)}</p>
+                </div>
+                <div
+                  style={{ display: "flex", justifyContent: "space-between" }}
+                >
+                  <p>Quantity : </p>
+                  <p>{order.quantity}</p>
+                </div>
+                <div
+                  style={{ display: "flex", justifyContent: "space-between" }}
+                >
+                  <p>Total amount : </p>
+                  <p>{order.totalPrice.toLocaleString()}</p>
+                </div>
+              </div>
             </div>
             <hr />
-            <div style={{ marginTop: "30px" }}>
-              <div style={{ display: "flex", justifyContent: "space-between" }}>
-                <p>Ordered on : </p>
-                <p>{order.orderDate.substr(0, 10)}</p>
-              </div>
-              <div style={{ display: "flex", justifyContent: "space-between" }}>
-                <p>Quantity : </p>
-                <p>{order.quantity}</p>
-              </div>
-              <div style={{ display: "flex", justifyContent: "space-between" }}>
-                <p>Total amount : </p>
-                <p>{order.totalPrice.toLocaleString()}</p>
-              </div>
-            </div>
-          </div>
+          </>
         );
       })}
     </div>
