@@ -12,7 +12,6 @@ import styles from "./Cart.module.css";
 import MessageCard from "../components/cards/MessageCard";
 
 export default function CartPage() {
-  const [products, setProducts] = useState([]);
   const [cart, setCart] = useState(null);
   const { isLoggedIn, user } = useSelector((state) => state.auth);
   console.log(cart);
@@ -41,7 +40,7 @@ export default function CartPage() {
   }, [isLoggedIn, user]);
 
   if (!isLoggedIn) return <MessageCard message="Not Logged In" />;
-  if (!cart || cart.cartItems.length == 0)
+  if (!cart || cart.cartItems.length === 0)
     return <MessageCard message="Cart Is Empty" />;
 
   const total = cart.totalAmount;
