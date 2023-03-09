@@ -29,10 +29,10 @@ This is an e-commerce website built using full-stack web development technologie
 
 The following are the tools and dependencies needed to locally run this project:
 
-* [Node.js](`https://nodejs.org/en/`)
-* [Java IDE with JDK](`https://www.jetbrains.com/idea/download/`)
-* [MySQL Database Server](`https://dev.mysql.com/downloads/mysql/`)
-* [Git](`https://git-scm.com/downloads/`)
+* [Node.js](https://nodejs.org/en/)
+* [Java IDE with JDK](https://www.jetbrains.com/idea/download/)
+* [MySQL Database](https://dev.mysql.com/downloads/mysql/)
+* [Git](https://git-scm.com/downloads/)
 ## Installation Guide
 
 To run the project locally follow these steps:
