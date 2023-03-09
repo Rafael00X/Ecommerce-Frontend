@@ -9,6 +9,7 @@ export default function SearchBar() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    if (value === "") return;
     const text = value.split(" ").join("+");
     navigate("/products/search?text=" + text);
   };
