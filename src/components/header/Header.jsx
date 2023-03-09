@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Menu from "./Menu";
 import Logo from "../../assets/img/logo.png";
 import styles from "./Header.module.css";
+import SearchBar from "../forms/SearchBar";
 
 export default function Header() {
   return (
@@ -22,6 +23,7 @@ export default function Header() {
           <span className="navbar-toggler-icon"></span>
         </button>
         <Brand />
+        <SearchBar />
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
             <Menu />

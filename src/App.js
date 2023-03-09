@@ -9,6 +9,7 @@ import Error from "./pages/Error";
 import Header from "./components/header/Header";
 import Cart from "./pages/Cart";
 import Orders from "./pages/Orders";
+import Search from "./pages/Search";
 import LoginModal from "./components/modals/FormModal";
 import { useEffect } from "react";
 import { validateUser } from "./fetch/index";
@@ -33,6 +34,7 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/category/:categoryId" element={<Category />} />
           <Route path="/product/:productId" element={<Product />} />
+          <Route path="/products/search" element={<Search />} />
           <Route path="/section/:sectionId" element={<Section />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/orders" element={<Orders />} />

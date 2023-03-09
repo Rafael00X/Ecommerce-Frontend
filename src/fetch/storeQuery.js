@@ -25,3 +25,12 @@ export const getProduct = async (productId) => {
   const data = await response.json();
   return data;
 };
+
+export const getProductsWithText = async (text) => {
+  const finalText = text.split(" ").join("+");
+  const response = await fetch(
+    `${BACKEND_ONE_API_URL}/products/search?text=${finalText}`
+  );
+  const data = await response.json();
+  return data;
+};
