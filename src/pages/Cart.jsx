@@ -10,9 +10,11 @@ import {
 import CartProductCard from "../components/cards/CartProductCard";
 import styles from "./Cart.module.css";
 import MessageCard from "../components/cards/MessageCard";
+import NoticeModal from "../components/modals/NoticeModal";
 
 export default function CartPage() {
   const [cart, setCart] = useState(null);
+  const [isOpen, setIsOpen] = useState(false);
   const { isLoggedIn, user } = useSelector((state) => state.auth);
   console.log(cart);
 
@@ -41,7 +43,17 @@ export default function CartPage() {
 
   if (!isLoggedIn) return <MessageCard message="Not Logged In" />;
   if (!cart || cart.cartItems.length === 0)
-    return <MessageCard message="Cart Is Empty" />;
+    return (
+      <>
+        <NoticeModal
+          title="Order Placed"
+          message="Your order has been successfully processed"
+          onClose={() => setIsOpen(false)}
+          isOpen={isOpen}
+        />
+        <MessageCard message="Cart Is Empty" />
+      </>
+    );
 
   const total = cart.totalAmount;
 
@@ -57,17 +69,23 @@ export default function CartPage() {
           />
         );
       })}
-      <Payment total={total} user={user} setCart={setCart} />
+      <Payment
+        total={total}
+        user={user}
+        setCart={setCart}
+        setIsOpen={setIsOpen}
+      />
     </div>
   );
 }
 
 function Payment(props) {
-  const { total, user, setCart } = props;
+  const { total, user, setCart, setIsOpen } = props;
+
   const handlePay = () => {
     placeOrder(user)
       .then(() => {
-        alert("Order Placed!");
+        setIsOpen(true);
         setCart((prev) => {
           return { ...prev, cartItems: [] };
         });
