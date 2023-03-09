@@ -28,11 +28,11 @@ This is an ecommerce website built using modern web development technologies. Th
 
 The following are the tools and dependencies needed to locally run this project:
 
-* Node.js -  `https://nodejs.org/en/`
-* JDK - `https://www.oracle.com/in/java/technologies/downloads/#java17`
-* MySQL Server - `https://dev.mysql.com/downloads/mysql/`
-* Git - `https://git-scm.com/downloads`
-## Installation
+* [Node.js](`https://nodejs.org/en/`)
+* [Java IDE with JDK](`https://www.jetbrains.com/idea/download/`)
+* [MySQL Database Server](`https://dev.mysql.com/downloads/mysql/`)
+* [Git](`https://git-scm.com/downloads/`)
+## Installation Guide
 
 To run the project locally follow these steps:
 
@@ -42,12 +42,12 @@ git clone https://github.com/Rafael00X/Ecommerce-Backend-One.git
 git clone https://github.com/Rafael00X/Ecommerce-Backend-Two.git
 ```
 
-* Set the database details in application.properties files of both the backend projects
+* Open the projects in IDE and set the database details in `application.properties` files of both the backend projects
 ```
 src/main/resources/application.properties
 ```
 
-* Run the two projects using IntelliJ, Eclipse or any other IDE. To run them, you need to run the `main()` method in `BackendOneApplication.java` and `BackendTwoApplication.java` classes respectively.
+* Run the two projects. To run them, you need to run the `main()` method in `BackendOneApplication.java` and `BackendTwoApplication.java` classes respectively.
 
 * Type this link in browser to populate the database
 ```
@@ -61,7 +61,6 @@ git clone https://github.com/Rafael00X/Ecommerce-Frontend.git
 
 * Go to the frontend directory and install npm dependencies
 ```
-cd Website-Client/
 npm install
 ```
 
