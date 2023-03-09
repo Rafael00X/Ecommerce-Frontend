@@ -15,7 +15,7 @@ export default function SectionCard(props) {
     <div className={styles["section-card"] + " bg-white"}>
       <div className={styles.header}>
         <h1>{sectionName}</h1>
-        <Link to={"/section/" + sectionId} className="btn btn-primary">
+        <Link to={"/sections/" + sectionId} className="btn btn-primary">
           VIEW ALL
         </Link>
       </div>

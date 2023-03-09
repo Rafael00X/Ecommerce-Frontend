@@ -32,10 +32,10 @@ export default function App() {
       <div id="outer-container">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/category/:categoryId" element={<Category />} />
-          <Route path="/product/:productId" element={<Product />} />
+          <Route path="/categories/:categoryId" element={<Category />} />
+          <Route path="/products/:productId" element={<Product />} />
           <Route path="/products/search" element={<Search />} />
-          <Route path="/section/:sectionId" element={<Section />} />
+          <Route path="/sections/:sectionId" element={<Section />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/orders" element={<Orders />} />
           <Route path="/*" element={<Error />} />

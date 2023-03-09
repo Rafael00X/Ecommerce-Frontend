@@ -12,7 +12,7 @@ export default function CategoryCard(props) {
 
   return (
     <div className={styles["category-card"]} style={{ width }}>
-      <Link to={`/category/${categoryId}`}>
+      <Link to={`/categories/${categoryId}`}>
         <img
           className="zoom"
           src={imageUrl || imagePlaceholder}

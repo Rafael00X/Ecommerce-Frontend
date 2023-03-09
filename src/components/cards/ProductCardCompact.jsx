@@ -24,7 +24,7 @@ export default function ProductCardCompact(props) {
   const rating = reviewCount === 0 ? 0.0 : totalRating / reviewCount;
 
   return (
-    <Link to={`/product/${productId}`}>
+    <Link to={`/products/${productId}`}>
       <div className={styles["product-card"] + " bg-white"}>
         <div>
           <img

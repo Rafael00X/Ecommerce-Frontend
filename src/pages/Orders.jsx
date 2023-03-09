@@ -45,7 +45,7 @@ export default function Orders() {
             <tr key={index}>
               <td className={styles.name}>
                 <div className="d-flex">
-                  <Link to={`/product/${order.productId}`}>
+                  <Link to={`/products/${order.productId}`}>
                     <img
                       src={order.imageUrl}
                       alt="product"
@@ -82,7 +82,7 @@ function CompactOrders(props) {
                   alignItems: "center",
                 }}
               >
-                <Link to={`/product/${order.productId}`}>
+                <Link to={`/products/${order.productId}`}>
                   <img
                     src={order.imageUrl}
                     alt="product"
