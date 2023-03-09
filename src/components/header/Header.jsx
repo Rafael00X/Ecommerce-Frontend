@@ -4,8 +4,10 @@ import Menu from "./Menu";
 import Logo from "../../assets/img/logo.png";
 import styles from "./Header.module.css";
 import SearchBar from "../forms/SearchBar";
+import useWindowDimensions from "../../hooks/useWindowDimensions";
 
 export default function Header() {
+  const { width } = useWindowDimensions();
   return (
     <nav
       className={`navbar navbar-expand-sm navbar-dark bg-dark ${styles.navbar}`}
@@ -23,13 +25,22 @@ export default function Header() {
           <span className="navbar-toggler-icon"></span>
         </button>
         <Brand />
-        <SearchBar />
+        {width > 1000 && (
+          <div className="container-fluid">
+            <SearchBar />
+          </div>
+        )}
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
             <Menu />
           </ul>
         </div>
       </div>
+      {width <= 1000 && (
+        <div style={{ padding: "15px 20px" }}>
+          <SearchBar />
+        </div>
+      )}
     </nav>
   );
 }

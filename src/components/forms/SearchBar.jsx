@@ -14,35 +14,34 @@ export default function SearchBar() {
   };
 
   return (
-    <div className="container-fluid" style={{ margin: "15px" }}>
-      <form
-        className="d-flex search-bar"
-        role="search"
-        onSubmit={handleSubmit}
-        action="/"
-      >
-        <div className="input-group">
-          <input
-            name="query"
-            className="form-control"
-            type="text"
-            placeholder="Search for products"
-            aria-label="Search"
-            value={value}
-            onChange={(event) => setValue(event.target.value)}
+    <form
+      className="d-flex search-bar"
+      role="search"
+      onSubmit={handleSubmit}
+      action="/"
+    >
+      <div className="input-group">
+        <input
+          name="query"
+          className="form-control"
+          type="text"
+          placeholder="Search for products"
+          aria-label="Search"
+          value={value}
+          onChange={(event) => setValue(event.target.value)}
+          style={{ borderRadius: "0" }}
+        />
+        <button className="btn btn-primary" type="submit">
+          <SearchIcon
+            style={{
+              width: "20px",
+              height: "20px",
+              fill: "white",
+              paddingBottom: "2px",
+            }}
           />
-          <button className="btn btn-primary" type="submit">
-            <SearchIcon
-              style={{
-                width: "20px",
-                height: "20px",
-                fill: "white",
-                paddingBottom: "2px",
-              }}
-            />
-          </button>
-        </div>
-      </form>
-    </div>
+        </button>
+      </div>
+    </form>
   );
 }
