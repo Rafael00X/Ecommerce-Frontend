@@ -14,7 +14,7 @@ export default function SectionCard(props) {
   return (
     <div className={styles["section-card"] + " bg-white"}>
       <div className={styles.header}>
-        <h1>{sectionName}</h1>
+        <h1 className="ovf-ellipse">{sectionName}</h1>
         <Link to={"/sections/" + sectionId} className="btn btn-primary">
           VIEW ALL
         </Link>
